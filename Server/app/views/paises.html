@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Paises</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,maximum-scale=1,minimum-scale=1">
+		<meta name="description" content="List of games">
+		<meta name="keywords" content="RISK, game, SCORE-2016">
+		<script type="text/javascript" src="js/jquery-1.11.3.min.js" ></script>
+		<script type="text/javascript" src="js/pais.js" ></script>
+		<link rel="stylesheet" type="text/css" href="css/list.css">
+	</head>
+	<body>
+		<div id = "wraper">
+			
+			<div>
+				<p>Paises</p>
+				<label>Buscar por Codigo</label>
+				<input  type = "text"  id = "busqueda" />
+				<input  type = "button"  id = "btnBusqueda" value = "Buscar" />
+				</br>
+				</br>
+
+				
+			</div>
+			<div id = "list">
+				<table id = "table" style="width:100%">
+					<tr>
+						<th>Codigo</th>
+						<th>Descripcion</th>
+					</tr>
+
+				  	{% for x in listPaises %}
+				  		<tr class = "fila" id = {{x.codigo}} >
+						    <td class = "codigo">{{ x.codigo }}</td>
+						    <td>{{ x.descripcion }}</td>
+						</tr>
+					{% endfor %}
+
+				</table>
+			</div>
+			<div>
+				<input type = "button" id = "btnCrear" value = "Crear Pais"/>
+				<input type = "button" id = "btnEliminar" value = "Eliminar Pais"/></br></br>
+				<label>Codigo:</label> <input type= "text"  id = "editarCodigo" disabled/>
+				<label>Descripcion:</label> <input type = "text" id = "editarDescripcion"/>
+				<input type = "button" id = "btnEditar" value = "Editar Pais"/>
+			</div>
+
+		</div>
+
+	</body>
+</html>
