@@ -14,5 +14,5 @@ app.use(express.static('./app/public'));
 app.use('/',router);
 
 http.listen(app.get('port'),function(){
-    console.log("DRisk Aplication running in a port " + app.get('port'));
+    console.log("Food Espol Aplication running in a port " + app.get('port'));
 });
