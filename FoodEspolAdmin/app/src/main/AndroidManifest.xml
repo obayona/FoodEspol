@@ -15,14 +15,27 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Panel_FoodEspolAdmin" >
+
+        <uses-permission android:name="android.permission.INTERNET" />
+
+        <activity android:name=".TabAdmin" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+        <activity android:name=".Menus" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Platos" >
+        </activity>
+        <activity android:name=".Restaurante" >
+        </activity>
     </application>
 
 </manifest>
