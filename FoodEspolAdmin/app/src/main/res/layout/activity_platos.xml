@@ -5,6 +5,13 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="ec.espol.food.foodespoladmin.Platos">
+    tools:context="ec.espol.food.foodespoladmin.Platos"
+    android:orientation="vertical">
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nuevo Plato"
+        android:id="@+id/button4"
+        android:layout_gravity="center_horizontal" />
 </LinearLayout>
