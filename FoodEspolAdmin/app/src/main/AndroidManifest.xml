@@ -36,6 +36,14 @@
         </activity>
         <activity android:name=".Restaurante" >
         </activity>
+        <activity android:name=".NuevoMenu" >
+        </activity>
+        <activity android:name=".NuevoPlato" >
+        </activity>
+        <activity android:name=".AgregarPlatosMenu" >
+        </activity>
+        <activity android:name=".EditarUbicacion" >
+        </activity>
     </application>
 
 </manifest>
