@@ -8,3 +8,8 @@ exports.validarLogIn = function(request, response){
 	db.validarLogin(request,response);
 };
 
+exports.getPlatos = function(request, response){
+	
+
+}
+

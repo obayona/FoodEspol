@@ -21,7 +21,7 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener{
         Intent intent;
         controllerRequests controller = new controllerRequests(this.getApplicationContext());
         controller.validateLogIn("jorenver","cualquiera");
-        intent= new Intent(LogIn.this,TabAdmin.class);
+        intent = new Intent(LogIn.this,TabAdmin.class);
         startActivity(intent);
 
     }
