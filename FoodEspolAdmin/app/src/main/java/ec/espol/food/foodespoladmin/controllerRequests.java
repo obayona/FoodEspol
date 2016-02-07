@@ -20,41 +20,47 @@ import android.util.Log;
 import android.widget.Toast;
 public class controllerRequests {
 
-    private static final String url="http://192.168.1.2:9009/validarlogIn?user=eloy&clave=1234";
+    private static final String ip="http://192.168.1.2:9009/";
 
     private Context context;
-    public controllerRequests(Context c){
+    private final Observer observer;
+    public controllerRequests(Context c, Observer observer){
         // Instantiate the RequestQueue.
-
+        this.observer = observer;
         this.context=c;
     }
 
     public void validateLogIn(final String user, final String password){
-        Log.d("Mensaje","****request" );
+
         JsonObjectRequest request;
+        String url = ip + String.format("validarlogIn?user=%s&clave=%s", user, password);
         request = new JsonObjectRequest(Request.Method.GET, url,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        Log.d("Mensaje", "La respuesta es: " + response.toString());
-                        Log.d("Mensaje", response.toString());
+
                         try {
                             Log.d("ensaje", "estoy en el try");
-                            boolean result = response.getBoolean("estado");
+                            int idRest = response.getInt("idRestaurante");
+                            if(idRest!= -1){
+                                Integer idRestaurante = new Integer(idRest);
+                                observer.update(idRestaurante);
+                            }
+                            else{
+                                Toast.makeText(context,"Usuario o contraseña incorrecta",Toast.LENGTH_LONG).show();
+                            }
 
                         } catch (JSONException e) {
-                            Log.d("ensaje", "estoy en el catch");
+                            Toast.makeText(context,"Error en el servidor",Toast.LENGTH_LONG).show();
                         }
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Log.d("mensaje", "****error");
                         Toast.makeText(context,error.toString(),Toast.LENGTH_LONG).show();
                     }
                 });
-        Log.d("Mensaje","se agrega request" );
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(request);
 

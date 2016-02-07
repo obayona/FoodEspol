@@ -99,21 +99,18 @@ exports.validarLogIn = function(request, response){
 	clave = request.query.clave;
 	console.log("recibi", usuario, clave);	
 	console.log('requerimiento llego al servidor ')
+	var idRest = -1;
 
-	/*
-	console.log(ruc);
-	var queryString = "SELECT * FROM Administrador where cedula="+user+" clave="+pass;
-	console.log(queryString);
-	
-	db.query(queryString, function(err, rows, fields) {
-	 	
-	 	console.log(rows[0]);
-	});
-	*/
+	for (var it in Restaurantes){
+		var rest = Restaurantes[it];
+		var administrador = rest.administrador;
 
-	var idR = 3;
+		if(administrador.usuario == usuario && administrador.clave == clave){
+			idRest = parseInt(it);
+		}
+	}
 
-	response.json({idRestaurante: idR} );
+	response.json({idRestaurante: idRest} );
 
  	
 }
