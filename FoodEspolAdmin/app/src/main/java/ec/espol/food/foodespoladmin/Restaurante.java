@@ -1,13 +1,25 @@
 package ec.espol.food.foodespoladmin;
 
-import android.support.v7.app.AppCompatActivity;
+import android.app.Activity;
+import android.net.Uri;
 import android.os.Bundle;
-
-public class Restaurante extends AppCompatActivity {
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.content.Intent;
+import android.widget.Button;
+import android.util.Log;
+public class Restaurante extends Fragment {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_restaurante);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.activity_restaurante, container, false);
+
     }
 }
