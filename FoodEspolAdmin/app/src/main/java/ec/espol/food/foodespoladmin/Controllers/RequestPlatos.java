@@ -1,4 +1,4 @@
-package ec.espol.food.foodespoladmin.Model;
+package ec.espol.food.foodespoladmin.Controllers;
 
 /**
  * Created by oswaldoalejandro on 07/02/16.
@@ -20,7 +20,7 @@ import android.widget.Toast;
 
 public class RequestPlatos {
 
-    private static final String ip="http://192.168.1.2:9009/";
+    private static final String ip="http://192.168.1.5:9009/";
 
 
     private Context context;

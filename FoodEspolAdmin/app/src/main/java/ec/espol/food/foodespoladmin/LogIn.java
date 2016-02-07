@@ -1,7 +1,7 @@
 package ec.espol.food.foodespoladmin;
 
-import ec.espol.food.foodespoladmin.Model.RequestPlatos;
-import android.content.DialogInterface;
+import ec.espol.food.foodespoladmin.Controllers.RequestPlatos;
+
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
