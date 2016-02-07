@@ -16,8 +16,6 @@
             </intent-filter>
         </activity>
 
-        <uses-permission android:name="android.permission.INTERNET" />
-
         <activity android:name=".TabAdmin" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -45,5 +43,7 @@
         <activity android:name=".EditarUbicacion" >
         </activity>
     </application>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

@@ -9,7 +9,9 @@ exports.validarLogIn = function(request, response){
 };
 
 exports.getPlatos = function(request, response){
-	
+	idRestautante = request.body.idRestautante;
+	console.log(idRestautante);
+	response.send({at1:"hola"});
 
 }
 
