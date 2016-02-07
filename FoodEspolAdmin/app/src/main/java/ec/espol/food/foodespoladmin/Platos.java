@@ -12,7 +12,7 @@ import android.util.Log;
 
 public class Platos extends Fragment {
 
-    private Button btNuevoPlato;
+    private View view;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -21,9 +21,9 @@ public class Platos extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.activity_platos, container, false);
+        view=inflater.inflate(R.layout.activity_platos, container, false);
         Log.i("Mensaje", "Actividad Platos Creada");
-        btNuevoPlato = (Button)view.findViewById(R.id.btnNuevoPlato);
+        Button btNuevoPlato = (Button)view.findViewById(R.id.btnNuevoPlato);
         btNuevoPlato.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

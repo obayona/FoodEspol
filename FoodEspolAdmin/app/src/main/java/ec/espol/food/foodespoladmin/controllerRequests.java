@@ -20,7 +20,7 @@ import android.util.Log;
 import android.widget.Toast;
 public class controllerRequests {
 
-    private static final String url="http://192.168.1.2:9009/validarlogIn?user=eloy&clave=1234";
+    private static final String url="http://192.168.1.5:9009/validarlogIn?user=eloy&clave=1234";
 
     private Context context;
     public controllerRequests(Context c){

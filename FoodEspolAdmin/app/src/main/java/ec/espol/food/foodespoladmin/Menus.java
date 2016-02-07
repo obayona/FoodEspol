@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 
 
 public class Menus extends Fragment {
-
+    private View view;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,7 +20,8 @@ public class Menus extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Log.i("Mensaje", "Actividad Menus Creada");
-        return inflater.inflate(R.layout.activity_menus, container, false);
+        view=inflater.inflate(R.layout.activity_menus, container, false);
+        return view;
 
     }
 }
