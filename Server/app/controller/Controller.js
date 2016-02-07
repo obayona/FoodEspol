@@ -5,7 +5,7 @@ var db = require('../model/model.js');
 
 exports.validarLogIn = function(request, response){
 	console.log("request")
-	db.validarLogin(request,response);
+	db.validarLogIn(request,response);
 };
 
 exports.getPlatos = function(request, response){

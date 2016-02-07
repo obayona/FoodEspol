@@ -10,7 +10,7 @@ var db = mysql.createConnection({
 */
 
 
-exports.validarLogin = function(request, response){ 
+exports.validarLogIn = function(request, response){ 
 
 	//var user= request.body.user;
 	//var pass= request.body.pass;

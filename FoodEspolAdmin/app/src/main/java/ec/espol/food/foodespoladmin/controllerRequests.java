@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.Map;
 import android.util.Log;
 public class controllerRequests {
-    private static final String url="http://127.0.0.1:9009/validarlogIn";
+    private static final String url="http://127.0.0.1:9009/validarLogIn";
     private Context context;
     public controllerRequests(Context c){
         // Instantiate the RequestQueue.
@@ -46,6 +46,7 @@ public class controllerRequests {
                         //Toast.makeText(context,error.toString(),Toast.LENGTH_LONG).show();
                     }
                 });
+        Log.d("Mensaje","se agrega request" );
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(request);
 

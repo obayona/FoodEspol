@@ -1,9 +1,13 @@
 package ec.espol.food.foodespoladmin;
 
+import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TabHost.TabSpec;
 import android.widget.TabHost;
 
@@ -33,6 +37,7 @@ public class TabAdmin extends AppCompatActivity {
         ts3.setIndicator("Restaurante");
         ts3.setContent(R.id.restaurante);
         tabH.addTab(ts3);
+
 
 
     }

@@ -14,7 +14,7 @@ public class Platos extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_platos);
-
+        Log.i(DISPLAY_SERVICE, "se llama el create");
         btNuevoPlato = (Button)findViewById(R.id.btnNuevoPlato);
         btNuevoPlato.setOnClickListener(new View.OnClickListener() {
             @Override
