@@ -11,7 +11,7 @@ import android.content.Intent;
 import android.widget.Button;
 import android.util.Log;
 public class Restaurante extends Fragment {
-
+    private View view;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,7 +20,8 @@ public class Restaurante extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Log.i("Mensaje", "Actividad Restaurante Creada");
-        return inflater.inflate(R.layout.activity_restaurante, container, false);
+        view= inflater.inflate(R.layout.activity_restaurante, container, false);
+        return view;
 
     }
 }
