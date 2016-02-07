@@ -19,7 +19,9 @@ import java.util.Map;
 import android.util.Log;
 import android.widget.Toast;
 public class controllerRequests {
+
     private static final String url="http://192.168.1.2:9009/validarlogIn?user=eloy&clave=1234";
+
     private Context context;
     public controllerRequests(Context c){
         // Instantiate the RequestQueue.
@@ -52,6 +54,7 @@ public class controllerRequests {
                         Toast.makeText(context,error.toString(),Toast.LENGTH_LONG).show();
                     }
                 });
+        Log.d("Mensaje","se agrega request" );
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(request);
 

@@ -7,7 +7,7 @@
     android:orientation="vertical">
 
 
-    <TabHost
+    <android.support.v4.app.FragmentTabHost
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/tabHost"
@@ -19,39 +19,17 @@
             android:orientation="vertical">
 
             <TabWidget
-                android:id="@android:id/tabs"
+                android:id="@+id/tabs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
             </TabWidget>
 
             <FrameLayout
-                android:id="@android:id/tabcontent"
+                android:id="@+id/tabContent"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"/>
 
-                <include
-                android:id="@+id/menus"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                layout="@layout/activity_menus" >
-                </include>
-
-                <include
-                    android:id="@+id/platos"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    layout="@layout/activity_platos" >
-                </include>
-
-                <include
-                    android:id="@+id/restaurante"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    layout="@layout/activity_restaurante" >
-                </include>
-
-            </FrameLayout>
         </LinearLayout>
-    </TabHost>
+    </android.support.v4.app.FragmentTabHost>
 </LinearLayout>

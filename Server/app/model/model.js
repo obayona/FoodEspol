@@ -91,7 +91,7 @@ var menus ={
 	}
 
 }
-exports.validarLogin = function(request, response){ 
+exports.validarLogIn = function(request, response){ 
 
 	//var user= request.body.user;
 	//var pass= request.body.pass;
@@ -99,10 +99,6 @@ exports.validarLogin = function(request, response){
 	clave = request.query.clave;
 	console.log("recibi", usuario, clave);	
 	console.log('requerimiento llego al servidor ')
-
-	for(i =0; i< Restaurantes.length; i++){
-
-	}
 
 	/*
 	console.log(ruc);
