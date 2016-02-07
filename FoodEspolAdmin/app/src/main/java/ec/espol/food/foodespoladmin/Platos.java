@@ -22,14 +22,14 @@ public class Platos extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.activity_platos, container, false);
+        Log.i("Mensaje", "Actividad Platos Creada");
         btNuevoPlato = (Button)view.findViewById(R.id.btnNuevoPlato);
         btNuevoPlato.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("Mensaje", "Activity is created");
                 Intent intent = new Intent(getContext(),NuevoPlato.class);
                 startActivity(intent);
-                Log.i("Mensaje", "Activity is created");
+
             }
         });
 

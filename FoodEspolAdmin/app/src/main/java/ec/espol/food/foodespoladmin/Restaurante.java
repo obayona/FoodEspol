@@ -19,6 +19,7 @@ public class Restaurante extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        Log.i("Mensaje", "Actividad Restaurante Creada");
         return inflater.inflate(R.layout.activity_restaurante, container, false);
 
     }
