@@ -10,13 +10,30 @@ import android.content.Intent;
 import android.widget.Button;
 import android.util.Log;
 
+import java.util.ArrayList;
+
+import ec.espol.food.foodespoladmin.Model.Categotia;
+import ec.espol.food.foodespoladmin.Model.Plato;
+
 public class Platos extends Fragment {
 
     private View view;
+    private ArrayList<Plato> platos;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        platos=new ArrayList<Plato>();
+        Plato p;
+        p= new Plato(1, "Seco de Chivo", 1.25, null);
+        p.addCategotia(Categotia.PIQUEO);
+        platos.add(p);
+        p= new Plato(2, "Seco de higuana", 2.25, null);
+        p.addCategotia(Categotia.ALMUERZO);
+        platos.add(p);
+        p= new Plato(1, "Corvivhe", 1.00, null);
+        p.addCategotia(Categotia.DESAYUNO);
+        platos.add(p);
     }
 
     @Override
