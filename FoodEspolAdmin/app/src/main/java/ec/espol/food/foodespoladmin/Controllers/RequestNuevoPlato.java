@@ -47,7 +47,6 @@ public class RequestNuevoPlato {
                     @Override
                     public void onResponse(JSONObject response) {
 
-
                         Log.d("ensaje", "*****estoy en el response puta madre");
 
                     }

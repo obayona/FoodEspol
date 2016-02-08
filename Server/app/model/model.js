@@ -8,6 +8,7 @@ var db = mysql.createConnection({
   database: 'FoodEspol'
 });
 */
+var contPlatos = 4;
 
 var Restaurantes = {
  '1':{
@@ -118,5 +119,14 @@ exports.validarLogIn = function(request, response){
 exports.guardarPlato = function(request, response){
 	var plato = request.body;
 	console.log("****El plato", plato);
+	contPlatos+=1
+
+	var newPlato = {
+		nombre: plato.nombre,
+		precio: plato.precio,
+		categorias: ["almuerzo", "piqueo"],
+		foto: "imagens/arrozpollo.png" 
+
+	}
 
 }

@@ -1,7 +1,10 @@
 package ec.espol.food.foodespoladmin;
 
 import ec.espol.food.foodespoladmin.Controllers.RequestNuevoPlato;
+import ec.espol.food.foodespoladmin.Model.CategoriaEnum;
 import ec.espol.food.foodespoladmin.Model.Plato;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,10 +19,13 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.database.Cursor;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.graphics.BitmapFactory;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
 import android.os.Environment;
+import android.widget.Toast;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -34,6 +40,8 @@ public class NuevoPlato extends AppCompatActivity {
     public Button btnPlatoCamara;
     public int RESULT_LOAD_IMAGE = 1;
     public int REQUEST_CAMERA = 2;
+    public boolean selectCategory = false;
+    public boolean selectedImage = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,10 +55,12 @@ public class NuevoPlato extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Plato p = createPlato();
-                HashMap<String, String> map = p.getHashMap();
-                Log.d("ensaje", "*****estoy mandando el plato");
-                RequestNuevoPlato request = new RequestNuevoPlato(getApplicationContext(), null);
-                request.guardarPlato(map);
+                if (p!=null) {
+                    HashMap<String, String> map = p.getHashMap();
+                    Log.d("ensaje", "*****estoy mandando el plato");
+                    RequestNuevoPlato request = new RequestNuevoPlato(getApplicationContext(), null);
+                    request.guardarPlato(map);
+                }
             }
         });
 
@@ -77,14 +87,60 @@ public class NuevoPlato extends AppCompatActivity {
     public Plato createPlato(){
         EditText nombreText = (EditText)findViewById(R.id.editNombrePlato);
         EditText precioText = (EditText)findViewById(R.id.editPrecioPlato);
-
         String nombre = nombreText.getText().toString();
-        double precio = Double.parseDouble(precioText.getText().toString());
+
+        //validar datos
+        double precio = 0;
+        try {
+            precio = Double.parseDouble(precioText.getText().toString());
+        }
+        catch( NumberFormatException e){
+            Toast.makeText(this.getApplicationContext(), "error en el precio", Toast.LENGTH_LONG).show();
+            return null;
+        }
+
+        if (nombre.equals("")){
+            Toast.makeText(this.getApplicationContext(), "debe ingresar un nombre", Toast.LENGTH_LONG).show();
+            return null;
+        }
+
+        //validar categorias:
+        Switch switchPiqueo = (Switch)findViewById(R.id.switchPiqueo);
+        Switch switchComidaRapida = (Switch)findViewById(R.id.switchComidaRapida);
+        Switch switchDesayuno = (Switch)findViewById(R.id.switchDesayuno);
+        Switch switchAlmuerzo = (Switch)findViewById(R.id.switchAlmuerzo);
+
+        ArrayList<CategoriaEnum> categorias = new ArrayList<CategoriaEnum>();
+
+        if(switchPiqueo.isChecked()){
+            selectCategory = true;
+            categorias.add(CategoriaEnum.PIQUEO);
+        }
+        if(switchComidaRapida.isChecked()){
+            selectCategory = true;
+            categorias.add(CategoriaEnum.COMIDARAPIDA);
+        }
+        if(switchDesayuno.isChecked()){
+            selectCategory = true;
+            categorias.add(CategoriaEnum.DESAYUNO);
+        }
+        if(switchAlmuerzo.isChecked()){
+            selectCategory = true;
+            categorias.add(CategoriaEnum.ALMUERZO);
+        }
+
+        if(!selectCategory){
+            Toast.makeText(this.getApplicationContext(), "debe elegir al menos una categoria", Toast.LENGTH_LONG).show();
+            return null;
+        }
 
         Plato p = new Plato(-1,nombre, precio, "fotoPath");
+        p.setCategorias(categorias);
         return p;
 
     }
+
+
 
 
     @Override
