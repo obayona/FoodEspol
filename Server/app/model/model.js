@@ -49,25 +49,25 @@ var platos = {
 	"1":{
 		nombre: "arroz con pollo",
 		precio: 1.50,
-		categorias: ["almuerzo", "piqueo"],
+		categorias: [0,1],
 		foto: "imagens/arrozpollo.png"
 	},
 	"2":{
 		nombre: "arroz con carne",
 		precio: 1.50,
-		categorias: ["almuerzo", "piqueo"],
+		categorias: [1,2,3],
 		foto: "imagens/arrozpollo.png"
 	},
 	"3":{
 		nombre: "arroz con pescado",
 		precio: 1.50,
-		categorias: ["almuerzo", "piqueo"],
+		categorias: [0,3],
 		foto: "imagens/arrozpollo.png"
 	},
 	"4":{
 		nombre: "arroz con arroz",
 		precio: 1.50,
-		categorias: ["almuerzo", "piqueo"],
+		categorias: [0,2],
 		foto: "imagens/arrozpollo.png"
 	}
 
@@ -112,14 +112,13 @@ exports.validarLogIn = function(request, response){
 	}
 
 	response.json({idRestaurante: idRest} );
-
  	
 }
 
 exports.guardarPlato = function(request, response){
 	var plato = request.body;
 	console.log("****El plato", plato);
-	contPlatos+=1
+	contPlatos+=1;
 
 	var newPlato = {
 		nombre: plato.nombre,
@@ -128,6 +127,11 @@ exports.guardarPlato = function(request, response){
 		foto: "imagens/arrozpollo.png" 
 
 	}
+
+	var idNewPlato = contPlatos.toString();
+	platos[idNewPlato] = newPlato;
+	response.json({idPlato: contPlatos});
+
 
 }
 

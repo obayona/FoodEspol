@@ -21,6 +21,8 @@ import ec.espol.food.foodespoladmin.Observer;
 /**
  * Created by oswaldoalejandro on 07/02/16.
  */
+
+
 public class RequestNuevoPlato {
     private Context context;
     private final Observer observer;
@@ -31,6 +33,7 @@ public class RequestNuevoPlato {
         this.context=c;
 
     }
+
 
     public void guardarPlato(HashMap<String, String> plato) {
 
@@ -46,6 +49,14 @@ public class RequestNuevoPlato {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
+                        try{
+                            int idPlato = response.getInt("idPlato");
+                            Integer idRestaurante = new Integer(idPlato);
+                            observer.update(idPlato);
+
+                        }catch(JSONException e){
+                            Toast.makeText(context,"Error en el servidor",Toast.LENGTH_LONG).show();
+                        }
 
                         Log.d("ensaje", "*****estoy en el response puta madre");
 

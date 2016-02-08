@@ -36,6 +36,29 @@ public class Plato {
         map.put("nombre", nombre);
         map.put("precio", String.valueOf(precio));
 
+        int cont = 1;
+
+        for (CategoriaEnum c: categorias){
+            String key = String.format("categoria%d", cont);
+
+            switch (c){
+                case COMIDARAPIDA:
+                    map.put(key, Integer.toString(0));
+                    break;
+                case PIQUEO:
+                    map.put(key, Integer.toString(1));
+                    break;
+                case DESAYUNO:
+                    map.put(key, Integer.toString(2));
+                    break;
+                case ALMUERZO:
+                    map.put(key, Integer.toString(3));
+                    break;
+            }
+            cont ++;
+
+        }
+
         return map;
     }
 

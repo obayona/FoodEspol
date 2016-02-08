@@ -42,6 +42,7 @@ public class NuevoPlato extends AppCompatActivity {
     public int REQUEST_CAMERA = 2;
     public boolean selectCategory = false;
     public boolean selectedImage = false;
+    private int idPlato = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +59,7 @@ public class NuevoPlato extends AppCompatActivity {
                 if (p!=null) {
                     HashMap<String, String> map = p.getHashMap();
                     Log.d("ensaje", "*****estoy mandando el plato");
-                    RequestNuevoPlato request = new RequestNuevoPlato(getApplicationContext(), null);
+                    RequestNuevoPlato request = new RequestNuevoPlato(getApplicationContext(), datosPlato);
                     request.guardarPlato(map);
                 }
             }
@@ -228,6 +229,15 @@ public class NuevoPlato extends AppCompatActivity {
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             startActivityForResult(intent, REQUEST_CAMERA);
 
+        }
+    };
+
+    public Observer datosPlato = new Observer(){
+        @Override
+        public void update(Object object){
+            Integer temp = (Integer)object;
+            idPlato = temp.intValue();
+            Log.d("Recibi el id","id" );
         }
     };
 
