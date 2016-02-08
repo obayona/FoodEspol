@@ -15,3 +15,9 @@ exports.getPlatos = function(request, response){
 
 }
 
+exports.guardarPlato= function(request, response){
+	console.log("guardarPlato");
+	db.guardarPlato(request, response);
+
+}
+

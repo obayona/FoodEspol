@@ -5,6 +5,8 @@ import java.util.ArrayList;
 /**
  * Created by jorge on 7/2/16.
  */
+import java.util.HashMap;
+
 public class Plato {
     private int id;
     private String nombre;
@@ -26,6 +28,15 @@ public class Plato {
         }
         if(ban)
             categotias.add(categoria);
+    }
+
+    public HashMap<String, String> getHashMap(){
+
+        HashMap<String, String> map = new HashMap<String, String>();
+        map.put("nombre", nombre);
+        map.put("precio", String.valueOf(precio));
+
+        return map;
     }
 
     public String getPhotoPath() {

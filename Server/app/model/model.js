@@ -114,3 +114,9 @@ exports.validarLogIn = function(request, response){
 
  	
 }
+
+exports.guardarPlato = function(request, response){
+	var plato = request.body;
+	console.log("****El plato", plato);
+
+}

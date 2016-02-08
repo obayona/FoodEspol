@@ -1,6 +1,6 @@
 package ec.espol.food.foodespoladmin;
 
-import ec.espol.food.foodespoladmin.Controllers.RequestPlatos;
+import ec.espol.food.foodespoladmin.Controllers.RequestLogIn;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -48,7 +48,7 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener{
 
     public void Login(String user, String password ){
         Log.i("mensaje", "estoy enviando");
-        RequestPlatos controller = new RequestPlatos(this.getApplicationContext(), observer);
+        RequestLogIn controller = new RequestLogIn(this.getApplicationContext(), observer);
         controller.validateLogIn(user, password);
     }
 

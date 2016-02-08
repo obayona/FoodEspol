@@ -18,15 +18,13 @@ import android.widget.Toast;
 
 
 
-public class RequestPlatos {
-
-    private static final String ip="http://192.168.1.5:9009/";
+public class RequestLogIn {
 
 
     private Context context;
     private final Observer observer;
 
-    public RequestPlatos(Context c, Observer observer){
+    public RequestLogIn(Context c, Observer observer){
         // Instantiate the RequestQueue.
         this.observer = observer;
         this.context=c;
@@ -35,6 +33,8 @@ public class RequestPlatos {
     public void validateLogIn(final String user, final String password){
 
         JsonObjectRequest request;
+        Constants cons = new Constants();
+        String ip = cons.ip;
         String url = ip + String.format("validarlogIn?user=%s&clave=%s", user, password);
         request = new JsonObjectRequest(Request.Method.GET, url,
                 new Response.Listener<JSONObject>() {

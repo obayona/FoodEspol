@@ -30,13 +30,20 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
         <activity android:name=".Platos" >
         </activity>
+
         <activity android:name=".Restaurante" >
         </activity>
         <activity android:name=".NuevoMenu" >
         </activity>
         <activity android:name=".NuevoPlato" >
+            android:label="Crear plato"
+            android:parentActivityName="ec.espol.food.foodespoladmin.Platos"
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ec.espol.food.foodespoladmin.Platos" />
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
