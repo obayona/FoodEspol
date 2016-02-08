@@ -120,3 +120,17 @@ exports.guardarPlato = function(request, response){
 	console.log("****El plato", plato);
 
 }
+
+exports.getMenus = function(request, response){
+	idRestautante = request.query.idRestautante;
+	console.log("Get Menus ",idRestautante);
+	console.log(Restaurantes[idRestautante]);
+	listMenu=Restaurantes[idRestautante].menu;
+	var result=[];
+	for (var i = 0; i <listMenu.length; i++) {
+		menu=menus[listMenu[i]];
+		result.push({id:listMenu[i],fecha: menu.fecha});
+	};
+	response.json({menus: result} );
+
+}
