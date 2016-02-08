@@ -120,13 +120,30 @@ exports.guardarPlato = function(request, response){
 	console.log("****El plato", plato);
 	contPlatos+=1;
 
+	var categorias = [];
+
+	var strBase = "categoria";
+	var cont = 1;
+
+	var strIt = strBase + cont;
+	for (var i = cont; i < 4; i++){
+		cat = plato[strIt]
+		if(cat){
+			console.log(cat, strIt)
+			categorias.push(parseInt(cat)) ;
+		}
+		cont +=1;
+		strIt = strBase + cont;
+	}
+
 	var newPlato = {
 		nombre: plato.nombre,
 		precio: plato.precio,
-		categorias: ["almuerzo", "piqueo"],
+		categorias: categorias,
 		foto: "imagens/arrozpollo.png" 
-
 	}
+
+	console.log("***newPlato",newPlato);
 
 	var idNewPlato = contPlatos.toString();
 	platos[idNewPlato] = newPlato;

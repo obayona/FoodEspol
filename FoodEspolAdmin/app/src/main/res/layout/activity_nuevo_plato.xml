@@ -135,16 +135,16 @@
             <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/categoriaPiqueo"
-                android:id="@+id/switchPiqueo"
+                android:text="@string/categoriaComidaRapida"
+                android:id="@+id/switchComidaRapida"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="1" />
 
             <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/categoriaComidaRapida"
-                android:id="@+id/switchComidaRapida"
+                android:text="@string/categoriaPiqueo"
+                android:id="@+id/switchPiqueo"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="1" />
 

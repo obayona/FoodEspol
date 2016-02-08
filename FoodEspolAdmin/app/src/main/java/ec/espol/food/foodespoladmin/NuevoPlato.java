@@ -113,13 +113,13 @@ public class NuevoPlato extends AppCompatActivity {
 
         ArrayList<CategoriaEnum> categorias = new ArrayList<CategoriaEnum>();
 
-        if(switchPiqueo.isChecked()){
-            selectCategory = true;
-            categorias.add(CategoriaEnum.PIQUEO);
-        }
         if(switchComidaRapida.isChecked()){
             selectCategory = true;
             categorias.add(CategoriaEnum.COMIDARAPIDA);
+        }
+        if(switchPiqueo.isChecked()){
+            selectCategory = true;
+            categorias.add(CategoriaEnum.PIQUEO);
         }
         if(switchDesayuno.isChecked()){
             selectCategory = true;
