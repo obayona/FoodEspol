@@ -23,17 +23,17 @@ public class RequestLogIn {
 
     private Context context;
     private final Observer observer;
-
+    private Constants cons;
     public RequestLogIn(Context c, Observer observer){
         // Instantiate the RequestQueue.
         this.observer = observer;
         this.context=c;
+        this.cons = new Constants();
     }
 
     public void validateLogIn(final String user, final String password){
 
         JsonObjectRequest request;
-        Constants cons = new Constants();
         String ip = cons.ip;
         String url = ip + String.format("validarlogIn?user=%s&clave=%s", user, password);
         request = new JsonObjectRequest(Request.Method.GET, url,
@@ -46,6 +46,7 @@ public class RequestLogIn {
                             int idRest = response.getInt("idRestaurante");
                             if(idRest!= -1){
                                 Integer idRestaurante = new Integer(idRest);
+                                cons.idRestaurante=idRest;
                                 observer.update(idRestaurante);
                             }
                             else{

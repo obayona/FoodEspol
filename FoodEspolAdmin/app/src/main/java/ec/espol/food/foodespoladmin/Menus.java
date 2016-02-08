@@ -13,10 +13,11 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 import ec.espol.food.foodespoladmin.Adapters.MenuAdapter;
+import ec.espol.food.foodespoladmin.Controllers.RequestMenus;
 import ec.espol.food.foodespoladmin.Model.Menu;
 
 
-public class Menus extends Fragment {
+public class Menus extends Fragment implements Observer {
     private View view;
     private ArrayList<Menu> menus;
     @Override
@@ -35,7 +36,14 @@ public class Menus extends Fragment {
         final ListView elements = (ListView) view.findViewById(R.id.listMenus);
         final MenuAdapter adapter = new MenuAdapter(getContext(), menus);
         elements.setAdapter(adapter);
+        RequestMenus requestMenus= new RequestMenus(getContext(),this);
+        requestMenus.getMenus();
         return view;
+
+    }
+
+    @Override
+    public void update(Object objeto ){
 
     }
 }
