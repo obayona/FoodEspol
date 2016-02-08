@@ -12,9 +12,10 @@
     tools:context="ec.espol.food.foodespoladmin.NuevoPlato">
 
 
-<LinearLayout
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -33,6 +34,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/editNombrePlato"
+                android:inputType="textCapSentences|text"
                 android:layout_weight="1" />
         </LinearLayout>
 
@@ -53,7 +55,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/editPrecioPlato"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:inputType="numberDecimal" />
         </LinearLayout>
 
 
@@ -80,13 +83,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Camara"
-                    android:id="@+id/btPlatoCamara" />
+                    android:id="@+id/btnPlatoCamara" />
 
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Galeria"
-                    android:id="@+id/btPlatoGaleria" />
+                    android:id="@+id/btnPlatoGaleria" />
 
             </LinearLayout>
 
@@ -96,12 +99,12 @@
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:src="@drawable/no_image"
             android:id="@+id/imagePlato" />
 
@@ -113,12 +116,53 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/editText7"
                 android:hint="@string/platoCategoria"
                 android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Switch
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/categoriaPiqueo"
+                android:id="@+id/switchPiqueo"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1" />
+
+            <Switch
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/categoriaComidaRapida"
+                android:id="@+id/switchComidaRapida"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1" />
+
+            <Switch
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/categoriaDesayuno"
+                android:id="@+id/switchDesayuno"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1" />
+            <Switch
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/categoriaAlmuerzo"
+                android:id="@+id/switchAlmuerzo"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1" />
+
 
         </LinearLayout>
 
