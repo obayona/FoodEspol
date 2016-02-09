@@ -2,7 +2,7 @@
     <string name="app_name">Food Espol</string>
     <string name="title_activity_panel_food_admin">Food Espol</string>
 
-<!-- TODO: Remove or change this placeholder text -->
+    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="platoName">Nombre del plato</string>
     <string name="platoPrecio">Precio</string>
@@ -12,6 +12,8 @@
     <string name="categoriaPiqueo">Piqueo</string>
     <string name="categoriaDesayuno">Desayuno</string>
     <string name="categoriaAlmuerzo">Almuerzo</string>
+    <string name="title_activity_map">MapActivity</string>
+    <string name="title_activity_maps">Ubicacion</string>
 
 
 </resources>
