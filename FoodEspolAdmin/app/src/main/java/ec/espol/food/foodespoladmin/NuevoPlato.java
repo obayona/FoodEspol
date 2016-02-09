@@ -6,6 +6,10 @@ import ec.espol.food.foodespoladmin.Model.Plato;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+
+import org.json.JSONException;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -42,7 +46,8 @@ public class NuevoPlato extends AppCompatActivity {
     public int REQUEST_CAMERA = 2;
     public boolean selectCategory = false;
     public boolean selectedImage = false;
-    private int idPlato = -1;
+    public File imageFile;
+    private RequestNuevoPlato upload;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,10 +62,17 @@ public class NuevoPlato extends AppCompatActivity {
             public void onClick(View v) {
                 Plato p = createPlato();
                 if (p!=null) {
-                    HashMap<String, String> map = p.getHashMap();
+                    HashMap<String,List< String> > map = p.getHashMap();
                     Log.d("ensaje", "*****estoy mandando el plato");
-                    RequestNuevoPlato request = new RequestNuevoPlato(getApplicationContext(), datosPlato);
-                    request.guardarPlato(map);
+                    upload = new RequestNuevoPlato(getApplicationContext(), datosPlato );
+
+                    try {
+                        Log.d("ensaje", "*****llamando a upload");
+                        upload.uploadPlato(imageFile, map);
+                    }
+                    catch(JSONException e){
+                        e.printStackTrace();
+                    }
                 }
             }
         });
@@ -113,21 +125,23 @@ public class NuevoPlato extends AppCompatActivity {
 
         ArrayList<CategoriaEnum> categorias = new ArrayList<CategoriaEnum>();
 
+        Plato p = new Plato(-1,nombre, precio, "fotoPath");
+
         if(switchComidaRapida.isChecked()){
             selectCategory = true;
-            categorias.add(CategoriaEnum.COMIDARAPIDA);
+            p.catComidaRapida =1;
         }
         if(switchPiqueo.isChecked()){
             selectCategory = true;
-            categorias.add(CategoriaEnum.PIQUEO);
+            p.catPiqueo = 1;
         }
         if(switchDesayuno.isChecked()){
             selectCategory = true;
-            categorias.add(CategoriaEnum.DESAYUNO);
+            p.catDesayuno = 1;
         }
         if(switchAlmuerzo.isChecked()){
             selectCategory = true;
-            categorias.add(CategoriaEnum.ALMUERZO);
+            p.catAlmuerzo = 1;
         }
 
         if(!selectCategory){
@@ -135,8 +149,6 @@ public class NuevoPlato extends AppCompatActivity {
             return null;
         }
 
-        Plato p = new Plato(-1,nombre, precio, "fotoPath");
-        p.setCategorias(categorias);
         return p;
 
     }
@@ -159,6 +171,8 @@ public class NuevoPlato extends AppCompatActivity {
 
             int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
             String picturePath = cursor.getString(columnIndex);
+            imageFile = new File(picturePath); //copio el path
+
             cursor.close();
 
             Bitmap image = BitmapFactory.decodeFile(picturePath);
@@ -172,8 +186,12 @@ public class NuevoPlato extends AppCompatActivity {
             Bitmap imagen = (Bitmap) data.getExtras().get("data");
             ByteArrayOutputStream bytes = new ByteArrayOutputStream();
             imagen.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
+            //String picturePath =
             File destination = new File(Environment.getExternalStorageDirectory(),
                     System.currentTimeMillis() + ".jpg");
+
+            imageFile = destination; //copio el path
+
             FileOutputStream fo;
             try {
                 destination.createNewFile();
@@ -235,9 +253,8 @@ public class NuevoPlato extends AppCompatActivity {
     public Observer datosPlato = new Observer(){
         @Override
         public void update(Object object){
-            Integer temp = (Integer)object;
-            idPlato = temp.intValue();
-            Log.d("Recibi el id","id" );
+
+            finish();
         }
     };
 

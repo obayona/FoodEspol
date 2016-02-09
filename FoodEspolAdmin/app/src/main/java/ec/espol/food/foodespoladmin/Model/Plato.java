@@ -6,58 +6,60 @@ import java.util.ArrayList;
  * Created by jorge on 7/2/16.
  */
 import java.util.HashMap;
+import java.util.List;
+
+import ec.espol.food.foodespoladmin.Controllers.Constants;
 
 public class Plato {
     private int id;
     private String nombre;
     private double precio;
-    private ArrayList<CategoriaEnum> categorias;
+    public int catComidaRapida = 0;
+    public int catPiqueo = 0;
+    public int catDesayuno = 0;
+    public int catAlmuerzo = 0;
+
+
 
     public Plato(int id, String nombre, double precio, String photoPath) {
         this.id = id;
         this.nombre = nombre;
         this.precio = precio;
-        this.categorias = new ArrayList<CategoriaEnum>();
-        this.photoPath = photoPath;
-    }
-    public void addCategotia(CategoriaEnum categoria){
-        boolean ban=true;
-        for(CategoriaEnum c : categorias) {
-            if(c.equals(categoria))
-                ban=false;
-        }
-        if(ban)
-            categorias.add(categoria);
+
     }
 
-    public HashMap<String, String> getHashMap(){
+    public HashMap<String, List< String> > getHashMap(){
 
-        HashMap<String, String> map = new HashMap<String, String>();
-        map.put("nombre", nombre);
-        map.put("precio", String.valueOf(precio));
+        HashMap<String, List<String>> map = new HashMap<>();
 
-        int cont = 1;
+        ArrayList<String> field1 = new ArrayList<String>();
+        field1.add(Integer.toString(Constants.idRestaurante));
+        map.put("idRestaurante", field1);
 
-        for (CategoriaEnum c: categorias){
-            String key = String.format("categoria%d", cont);
+        ArrayList<String> field2 = new ArrayList<String>();
+        field2.add(Double.toString(precio));
+        map.put("precio", field2);
 
-            switch (c){
-                case COMIDARAPIDA:
-                    map.put(key, Integer.toString(0));
-                    break;
-                case PIQUEO:
-                    map.put(key, Integer.toString(1));
-                    break;
-                case DESAYUNO:
-                    map.put(key, Integer.toString(2));
-                    break;
-                case ALMUERZO:
-                    map.put(key, Integer.toString(3));
-                    break;
-            }
-            cont ++;
+        ArrayList<String> field3 = new ArrayList<String>();
+        field3.add(nombre);
+        map.put("nombre", field3);
 
-        }
+        //categorias
+        ArrayList<String> field4 = new ArrayList<String>();
+        field4.add(Integer.toString(catComidaRapida));
+        map.put("catComidaRapida", field4);
+
+        ArrayList<String> field5 = new ArrayList<String>();
+        field5.add(Integer.toString(catPiqueo));
+        map.put("catPiqueo", field5);
+
+        ArrayList<String> field6 = new ArrayList<String>();
+        field6.add(Integer.toString(catDesayuno));
+        map.put("catDesayuno", field6);
+
+        ArrayList<String> field7 = new ArrayList<String>();
+        field7.add(Integer.toString(catAlmuerzo));
+        map.put("catAlmuerzo", field7);
 
         return map;
     }
@@ -66,9 +68,6 @@ public class Plato {
         return photoPath;
     }
 
-    public ArrayList<CategoriaEnum> getCategotias() {
-        return categorias;
-    }
 
     public double getPrecio() {
         return precio;
@@ -96,9 +95,6 @@ public class Plato {
         this.precio = precio;
     }
 
-    public void setCategorias(ArrayList<CategoriaEnum> categotias) {
-        this.categorias = categotias;
-    }
 
     public void setPhotoPath(String photoPath) {
         this.photoPath = photoPath;
