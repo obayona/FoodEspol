@@ -20,8 +20,13 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import ec.espol.food.foodespoladmin.Adapters.PlatosAdapter;
+
 import ec.espol.food.foodespoladmin.Controllers.RequestPlatos;
-import ec.espol.food.foodespoladmin.Model.*;
+
+
+import ec.espol.food.foodespoladmin.Model.CategoriaEnum;
+import ec.espol.food.foodespoladmin.Model.Plato;
+
 
 public class Platos extends Fragment implements Observer {
 

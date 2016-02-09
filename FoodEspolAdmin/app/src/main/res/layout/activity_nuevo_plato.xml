@@ -138,13 +138,17 @@
                 android:orientation="vertical">
 
 
+
             </LinearLayout>
 
-            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+
                 android:orientation="vertical">
+
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -162,12 +166,6 @@
                     android:id="@+id/switchPiqueo"
                     android:layout_weight="1" />
 
-                <Switch
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/categoriaComidaRapida"
-                    android:id="@+id/switchComidaRapida"
-                    android:layout_weight="1" />
 
                 <Switch
                     android:layout_width="wrap_content"
@@ -182,8 +180,16 @@
                     android:id="@+id/switchAlmuerzo"
                     android:layout_weight="1" />
 
+            <Switch
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/categoriaComidaRapida"
+                android:id="@+id/switchComidaRapida"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1" />
 
-            </LinearLayout>
+
+        </LinearLayout>
 
         <ImageButton
             android:layout_width="wrap_content"
