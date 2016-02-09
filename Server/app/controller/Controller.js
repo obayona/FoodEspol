@@ -35,3 +35,11 @@ exports.getPlatos = function(request, response){
 }
 
 
+exports.eliminarMenu = function(request, response){
+	idRestautante = request.query.idRestautante;
+	idMenu = request.query.idMenu;
+	console.log("Eliminar Menu ",idRestautante, " ",idMenu);
+	db.eliminarMenu(request,response);
+
+}
+

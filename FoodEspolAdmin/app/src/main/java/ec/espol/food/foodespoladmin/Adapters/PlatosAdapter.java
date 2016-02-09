@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -53,6 +54,16 @@ public class PlatosAdapter extends ArrayAdapter<Plato> {
         Plato currentPlato = this.platos.get(position);
         holder.nombre.setText(currentPlato.getNombre());
         holder.precio.setText(Double.toString(currentPlato.getPrecio()));
+        ImageButton delete =(ImageButton)convertView.findViewById(R.id.btnEliminarPlato);
+        delete.setFocusable(false);
+        delete.setClickable(false);
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i("Mensaje", "Se quiere eliminar un plato");
+
+            }
+        });
         return convertView;
     }
 

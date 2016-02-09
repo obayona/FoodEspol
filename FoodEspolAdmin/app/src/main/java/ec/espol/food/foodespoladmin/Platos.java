@@ -72,7 +72,7 @@ public class Platos extends Fragment implements Observer {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.i("Mensaje", "Se debe abrir MenuView");
-                Intent intent = new Intent(getContext(), EditarPlato.class);
+                Intent intent = new Intent(getContext(), NuevoPlato.class);
                 //Bundle data = new Bundle();
                 //MenuView menu = adapter.getMenus().get(position);
                 //data.putSerializable("menu", menu);
@@ -80,6 +80,7 @@ public class Platos extends Fragment implements Observer {
                 startActivity(intent);
             }
         });
+
         this.platos.clear();
         for (int i = 0; i < platosRecibidos.length(); i++) {
             try {

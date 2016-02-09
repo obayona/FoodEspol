@@ -1,14 +1,18 @@
 package ec.espol.food.foodespoladmin.Adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import ec.espol.food.foodespoladmin.Controllers.RequestMenus;
+import ec.espol.food.foodespoladmin.Observer;
 import ec.espol.food.foodespoladmin.R;
 import ec.espol.food.foodespoladmin.Model.Menu;
 
@@ -18,11 +22,13 @@ import ec.espol.food.foodespoladmin.Model.Menu;
 public class MenuAdapter extends ArrayAdapter<Menu> {
     private ArrayList<Menu>menus;
     private Context context;
+    private Observer observer;
 
-    public MenuAdapter(Context context, ArrayList<Menu> menus) {
+    public MenuAdapter(Context context, ArrayList<Menu> menus,Observer observer) {
         super(context,0,menus);
         this.menus = menus;
         this.context = context;
+        this.observer=observer;
     }
 
     static class ViewHolder{
@@ -47,8 +53,22 @@ public class MenuAdapter extends ArrayAdapter<Menu> {
             convertView.setTag(viewHolder);
         }
         ViewHolder holder = (ViewHolder)convertView.getTag();
-        Menu currentMenu = this.menus.get(position);
+        final Menu currentMenu = this.menus.get(position);
         holder.fecha.setText(currentMenu.getFecha());
+        ImageButton delete =(ImageButton)convertView.findViewById(R.id.btnEliminarMenu);
+        delete.setFocusable(false);
+        delete.setClickable(false);
+        observer=this.observer;
+        delete.setOnClickListener(new View.OnClickListener() {
+            private Menu dataMenu=currentMenu;
+            private Observer dataObserver=observer;
+            @Override
+            public void onClick(View v) {
+                Log.i("Mensaje", "Se quiere eliminar un Menu: "+dataMenu.id);
+                RequestMenus requestMenus = new RequestMenus(getContext(),dataObserver);
+                requestMenus.eliminarMenu(dataMenu.id);
+            }
+        });
         return convertView;
     }
 

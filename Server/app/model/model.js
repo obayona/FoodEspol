@@ -124,7 +124,6 @@ exports.guardarPlato = function(request, response){
 exports.getMenus = function(request, response){
 	idRestautante = request.query.idRestautante;
 	console.log("Get Menus ",idRestautante);
-	console.log(Restaurantes[idRestautante]);
 	listMenu=Restaurantes[idRestautante].menu;
 	var result=[];
 	for (var i = 0; i <listMenu.length; i++) {
@@ -138,7 +137,6 @@ exports.getMenus = function(request, response){
 exports.getPlatos = function(request, response){
 	idRestautante = request.query.idRestautante;
 	console.log("Get platos ",idRestautante);
-	console.log(Restaurantes[idRestautante]);
 	listPlatos=Restaurantes[idRestautante].platos;
 	var result=[];
 	for (var i = 0; i <listPlatos.length; i++) {
@@ -146,6 +144,22 @@ exports.getPlatos = function(request, response){
 		result.push({id:listPlatos[i],nombre:plato.nombre,precio:plato.precio,foto:plato.foto});
 	};
 	response.json({platos: result} );
+
+}
+
+exports.eliminarMenu = function(request, response){
+	idRestautante = request.query.idRestautante;
+	idMenu = request.query.idMenu;
+	menus=Restaurantes[idRestautante].menu;
+	for (var i = 0; i < menus.length; i++) {
+		if(menus[i]==idMenu){
+			menus.splice(i,1);
+			break;
+		}
+	}
+	console.log(Restaurantes[idRestautante]);
+	response.json({ban: true} );
+
 
 }
 

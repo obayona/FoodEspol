@@ -61,7 +61,7 @@ public class Menus extends Fragment implements Observer {
         int id;
         String fecha;
         final ListView elements = (ListView) view.findViewById(R.id.listMenus);
-        final MenuAdapter adapter = new MenuAdapter(getContext(), menus);
+        final MenuAdapter adapter = new MenuAdapter(getContext(), menus,this);
         elements.setAdapter(adapter);
         elements.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
