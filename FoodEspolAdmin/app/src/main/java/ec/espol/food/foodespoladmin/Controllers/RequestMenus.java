@@ -74,8 +74,9 @@ public class RequestMenus {
 
                         try {
 
-                            JSONArray menus=response.getJSONArray("menus");
-                            observer.update(menus);
+                            boolean ban=response.getBoolean("ban");
+                            if(ban)
+                                getMenus();
                         } catch (JSONException e) {
                             Toast.makeText(context,"Error en el servidor",Toast.LENGTH_LONG).show();
                         }

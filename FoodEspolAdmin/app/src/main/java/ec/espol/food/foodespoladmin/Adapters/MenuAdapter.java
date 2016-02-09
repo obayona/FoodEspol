@@ -64,9 +64,9 @@ public class MenuAdapter extends ArrayAdapter<Menu> {
             private Observer dataObserver=observer;
             @Override
             public void onClick(View v) {
-                Log.i("Mensaje", "Se quiere eliminar un Menu: "+dataMenu.id);
+                Log.i("Mensaje", "Se quiere eliminar un Menu: "+dataMenu.getId());
                 RequestMenus requestMenus = new RequestMenus(getContext(),dataObserver);
-                requestMenus.eliminarMenu(dataMenu.id);
+                requestMenus.eliminarMenu(dataMenu.getId());
             }
         });
         return convertView;

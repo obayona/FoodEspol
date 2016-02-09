@@ -71,7 +71,7 @@ public class Platos extends Fragment implements Observer {
         String photoPath;
         Plato plato;
         ListView elementsPlatos = (ListView) view.findViewById(R.id.listPlatos);
-        PlatosAdapter adapterPlatos = new PlatosAdapter(getContext(), platos);
+        PlatosAdapter adapterPlatos = new PlatosAdapter(getContext(), platos,this);
         elementsPlatos.setAdapter(adapterPlatos);
         elementsPlatos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

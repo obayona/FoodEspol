@@ -26,7 +26,8 @@
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="Datos Restaurante"
                 android:id="@+id/textView14"
-                android:layout_gravity="center_horizontal" />
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="10dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -76,56 +77,22 @@
                 android:layout_below="@+id/textView5"
                 android:layout_centerHorizontal="true" />
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="fill_parent"
+            <ImageButton
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center">
+                android:id="@+id/btnEditar"
+                android:src="@drawable/ic_action_lock_open"
+                android:background="#FFFFFF"
+                android:layout_gravity="center_horizontal" />
 
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.5"
-                    android:id="@+id/wrapperEdit">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Editar"
+                android:id="@+id/textView11"
+                android:layout_gravity="center_horizontal" />
 
-                    <ImageButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/btnEditar"
-                        android:src="@drawable/ic_action_edit"
-                        android:background="#FFFFFF"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="Editar"
-                        android:id="@+id/textView11" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.5">
-
-                    <ImageButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/btnGuardar"
-                        android:src="@drawable/ic_action_save"
-                        android:gravity="center"
-                        android:background="#FFFFFF"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="Guardar"
-                        android:id="@+id/textView12" />
-                </LinearLayout>
-            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -196,17 +163,10 @@
                 android:layout_gravity="center_horizontal"
                 android:textAppearance="?android:attr/textAppearanceLarge"/>
 
-            <ImageView
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                android:src="@drawable/no_foto"
-                android:id="@+id/imagePlato"
-                android:layout_gravity="center_horizontal"/>
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center">
+                android:layout_height="wrap_content">
 
                 <LinearLayout
                     android:orientation="vertical"
@@ -220,7 +180,15 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/btnCamara"
                         android:src="@drawable/ic_action_camera"
-                        android:background="#FFFFFF"/>
+                        android:background="#FFFFFF"
+                        android:layout_gravity="center"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Camara"
+                        android:id="@+id/textView12"
+                        android:layout_gravity="center"/>
 
                 </LinearLayout>
 
@@ -235,13 +203,43 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/btnGaleria"
-                        android:src="@drawable/ic_action_edit"
+                        android:src="@drawable/ic_action_picture"
                         android:gravity="center"
-                        android:background="#FFFFFF"/>
+                        android:background="#FFFFFF"
+                        android:layout_gravity="center"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Galeria"
+                        android:id="@+id/textView15"
+                        android:layout_gravity="center"/>
 
                 </LinearLayout>
             </LinearLayout>
+
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:src="@drawable/no_foto"
+                android:id="@+id/imagePlato"
+                android:layout_gravity="center_horizontal"/>
         </LinearLayout>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnGurarInformacion"
+            android:src="@drawable/ic_action_save"
+            android:layout_gravity="center_horizontal"
+            android:background="#FFFFFF"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="guardar"
+            android:id="@+id/textView16"
+            android:layout_gravity="center_horizontal" />
     </LinearLayout>
 
 </ScrollView>

@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import ec.espol.food.foodespoladmin.Controllers.RequestPlatos;
+import ec.espol.food.foodespoladmin.Observer;
 import ec.espol.food.foodespoladmin.R;
 import ec.espol.food.foodespoladmin.Model.Plato;
 
@@ -20,11 +22,13 @@ import ec.espol.food.foodespoladmin.Model.Plato;
 public class PlatosAdapter extends ArrayAdapter<Plato> {
     private ArrayList<Plato>platos;
     private Context context;
+    private Observer observer;
 
-    public PlatosAdapter(Context context, ArrayList<Plato> platos) {
+    public PlatosAdapter(Context context, ArrayList<Plato> platos,Observer observer) {
         super(context,0,platos);
         this.platos = platos;
         this.context = context;
+        this.observer=observer;
     }
 
     static class ViewHolder{
@@ -51,17 +55,21 @@ public class PlatosAdapter extends ArrayAdapter<Plato> {
             convertView.setTag(viewHolder);
         }
         ViewHolder holder = (ViewHolder)convertView.getTag();
-        Plato currentPlato = this.platos.get(position);
+        final Plato currentPlato = this.platos.get(position);
         holder.nombre.setText(currentPlato.getNombre());
         holder.precio.setText(Double.toString(currentPlato.getPrecio()));
         ImageButton delete =(ImageButton)convertView.findViewById(R.id.btnEliminarPlato);
         delete.setFocusable(false);
         delete.setClickable(false);
+        observer=this.observer;
         delete.setOnClickListener(new View.OnClickListener() {
+            private Plato dataPlato=currentPlato;
+            private Observer dataObserver=observer;
             @Override
             public void onClick(View v) {
                 Log.i("Mensaje", "Se quiere eliminar un plato");
-
+                RequestPlatos requestPlatos = new RequestPlatos(getContext(),dataObserver);
+                requestPlatos.eliminarPlato(dataPlato.getId());
             }
         });
         return convertView;

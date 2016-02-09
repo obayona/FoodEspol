@@ -62,4 +62,36 @@ public class RequestPlatos {
         queue.add(request);
 
     }
+
+    public void eliminarPlato(int idPlato){
+
+        JsonObjectRequest request;
+
+        String ip = cons.ip;
+        String url = ip + String.format("eliminarPlato?idRestautante=%d&idPlato=%d", cons.idRestaurante,idPlato);
+        request = new JsonObjectRequest(Request.Method.GET, url,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        try {
+
+                            boolean ban=response.getBoolean("ban");
+                            if(ban)
+                                getPlatos();
+                        } catch (JSONException e) {
+                            Toast.makeText(context,"Error en el servidor",Toast.LENGTH_LONG).show();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(context,error.toString(),Toast.LENGTH_LONG).show();
+                    }
+                });
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(request);
+
+    }
 }

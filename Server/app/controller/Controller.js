@@ -23,13 +23,11 @@ exports.guardarPlato= function(request, response){
 
 exports.getMenus = function(request, response){
 	idRestautante = request.query.idRestautante;
-	console.log("Get Menus ",idRestautante);
 	db.getMenus(request,response);
 
 }
 exports.getPlatos = function(request, response){
 	idRestautante = request.query.idRestautante;
-	console.log("Get Platos ",idRestautante);
 	db.getPlatos(request,response);
 
 }
@@ -40,6 +38,13 @@ exports.eliminarMenu = function(request, response){
 	idMenu = request.query.idMenu;
 	console.log("Eliminar Menu ",idRestautante, " ",idMenu);
 	db.eliminarMenu(request,response);
+
+}
+exports.eliminarPlato = function(request, response){
+	idRestautante = request.query.idRestautante;
+	idPlato = request.query.idPlato;
+	console.log("Eliminar Plato ",idRestautante, " ",idPlato);
+	db.eliminarPlato(request,response);
 
 }
 

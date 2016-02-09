@@ -241,8 +241,11 @@ exports.getMenus = function(request, response){
 	console.log("Get Menus ",idRestautante);
 	listMenu=Restaurantes[idRestautante].menu;
 	var result=[];
+	console.log("Menus ",listMenu);
 	for (var i = 0; i <listMenu.length; i++) {
 		menu=menus[listMenu[i]];
+
+		console.log("Menu ",menus);
 		result.push({id:listMenu[i],fecha: menu.fecha});
 	};
 	response.json({menus: result} );
@@ -265,17 +268,51 @@ exports.getPlatos = function(request, response){
 exports.eliminarMenu = function(request, response){
 	idRestautante = request.query.idRestautante;
 	idMenu = request.query.idMenu;
-	menus=Restaurantes[idRestautante].menu;
-	for (var i = 0; i < menus.length; i++) {
-		if(menus[i]==idMenu){
-			menus.splice(i,1);
+	auxListmenus=Restaurantes[idRestautante].menu;
+	for (var i = 0; i < auxListmenus.length; i++) {
+		if(auxListmenus[i]==idMenu){
+			auxListmenus.splice(i,1);
+			menus[idMenu]=null;
 			break;
 		}
 	}
 	console.log(Restaurantes[idRestautante]);
 	response.json({ban: true} );
-
-
 }
+exports.eliminarPlato = function(request, response){
+	idRestautante = request.query.idRestautante;
+	idPlato = request.query.idPlato;
+	auxListPlatos=Restaurantes[idRestautante].platos;
+	auxListmenus=Restaurantes[idRestautante].menu;
+	//elimino el plato de todos los menus del restaurante
+	console.log('%%%%%%%% ',auxListmenus)
+	if(auxListmenus){
+		for (var i = 0; i < auxListmenus.length; i++) {
+			auxMenuPlatos=menus[auxListmenus[i]].platos;
+			console.log("iteracion ",auxListmenus[i])
+			for (var i = 0; i < auxMenuPlatos.length; i++) {
+
+				if(auxMenuPlatos[i]==idPlato){
+					auxMenuPlatos.splice(i,1);
+					console.log("elimino ",auxMenuPlatos)
+					//break;
+				}
+			
+			}
+
+		}
+	}
+
+	for (var i = 0; i < auxListPlatos.length; i++) {
+		if(auxListPlatos[i]==idPlato){
+			auxListPlatos.splice(i,1);
+			platos[idPlato]=null;
+			break;
+		}
+	}
+	response.json({ban: true} );
+	
+}
+
 
 

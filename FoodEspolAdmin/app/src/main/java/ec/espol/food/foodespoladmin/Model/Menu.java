@@ -4,8 +4,8 @@ package ec.espol.food.foodespoladmin.Model;
  * Created by jorge on 7/2/16.
  */
 public class Menu {
-    public String fecha;
-    public int id;
+    private String fecha;
+    private int id;
 
     public Menu( int id,String fecha) {
         this.fecha = fecha;
