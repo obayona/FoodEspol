@@ -22,8 +22,8 @@ var Restaurantes = {
  		clave: "hola"
  	},
  	capacidad: 20,
- 	latitud: 123.65,
- 	longitud: 12566.455,
+ 	latitud: -2.145130,
+ 	longitud: -79.967372,
  	numClientes: 12,
  	logo: "imagenes/panchos.png",
  	platos: [1,2],//id de los platos
@@ -233,6 +233,25 @@ exports.guardarPlato = function(request, response){
     	console.log('end');
     });
     
+}
+
+exports.getRestaurante = function(request, response){
+	var idRestaurante = request.query.idRestaurante;
+
+	var idRest = idRestaurante.toString();
+	var restaurante = Restaurantes[idRest];
+
+	var Rest = {
+		nombreProp: restaurante.administrador.nombre,
+		nombre: restaurante.nombre,
+		capacidad: restaurante.capacidad,
+		latitud: restaurante.latitud,
+		longitud: restaurante.longitud,
+		logo: restaurante.logo
+	}
+
+	response.json(Rest);
+
 }
 
 

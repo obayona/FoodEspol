@@ -12,7 +12,6 @@ router.get('/eliminarMenu',Controller.eliminarMenu);
 router.get('/eliminarPlato',Controller.eliminarPlato);
 router.get('/getPlatosMenu',Controller.getPlatosMenu);
 router.get('/eliminarPlatoMenu',Controller.eliminarPlatoMenu);
-
-
+router.get('/getRestaurante', Controller.getRestaurante);
 module.exports = router;
 
