@@ -26,12 +26,14 @@ public class TabAdmin extends FragmentActivity {
         tabHost.addTab(tabHost.newTabSpec("tab1").setIndicator("Menus"), Menus.class, null);
         tabHost.addTab(tabHost.newTabSpec("tab2").setIndicator("Platos"), Platos.class, null);
         tabHost.addTab(tabHost.newTabSpec("tab3").setIndicator("Restaurante"), Restaurante.class, null);
+
         tabHost.setOnTabChangedListener(new OnTabChangeListener() {
 
             @Override
             public void onTabChanged(String tabId) {
                 // TODO your actions go here
                 Log.i("Mensaje", "cambiastes al tab: "+tabId);
+
             }
         });
 

@@ -18,25 +18,25 @@ import org.json.JSONObject;
 import ec.espol.food.foodespoladmin.Observer;
 
 /**
- * Created by jorge on 7/2/16.
+ * Created by jorge on 8/2/16.
  */
-public class RequestMenus {
+public class RequestPlatos {
     private Context context;
     private final Observer observer;
     private Constants cons;
 
-    public RequestMenus(Context c, Observer observer){
+    public RequestPlatos(Context c, Observer observer){
         this.observer = observer;
         this.context=c;
         this.cons = new Constants();
     }
 
-    public void getMenus(){
+    public void getPlatos(){
 
         JsonObjectRequest request;
 
         String ip = cons.ip;
-        String url = ip + String.format("getMenus?idRestautante=%d", cons.idRestaurante);
+        String url = ip + String.format("getPlatos?idRestautante=%d", cons.idRestaurante);
         request = new JsonObjectRequest(Request.Method.GET, url,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -44,10 +44,11 @@ public class RequestMenus {
 
                         try {
 
-                            JSONArray menus=response.getJSONArray("menus");
-                            observer.update(menus);
+                            JSONArray platos=response.getJSONArray("platos");
+                            Log.i("Mensaje", "los platos llegaron " + platos);
+                            observer.update(platos);
                         } catch (JSONException e) {
-                            Toast.makeText(context,"Error en el servidor",Toast.LENGTH_LONG).show();
+                            Toast.makeText(context, "Error en el servidor", Toast.LENGTH_LONG).show();
                         }
                     }
                 },

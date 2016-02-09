@@ -27,4 +27,11 @@ exports.getMenus = function(request, response){
 	db.getMenus(request,response);
 
 }
+exports.getPlatos = function(request, response){
+	idRestautante = request.query.idRestautante;
+	console.log("Get Platos ",idRestautante);
+	db.getPlatos(request,response);
+
+}
+
 

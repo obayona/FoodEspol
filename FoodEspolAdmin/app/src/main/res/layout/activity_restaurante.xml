@@ -9,117 +9,231 @@
         android:orientation="vertical"
         tools:context="ec.espol.food.foodespoladmin.Restaurante">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Nombre Restaurante"
-            android:id="@+id/textView3"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center_horizontal"/>
-
-        <EditText
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/editText"
-            android:layout_below="@+id/textView3"
-            android:layout_centerHorizontal="true" />
+            android:layout_height="match_parent"
+            android:background="#FFFFFF"
+            android:elevation="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Nombre Propietario"
-            android:id="@+id/textView4"
-            android:layout_below="@+id/editText"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center_horizontal"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nombre Restaurante"
+                android:id="@+id/textView3"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"/>
 
-        <EditText
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText"
+                android:layout_below="@+id/textView3"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nombre Propietario"
+                android:id="@+id/textView4"
+                android:layout_below="@+id/editText"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText2"
+                android:layout_below="@+id/textView4"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Capacidad"
+                android:id="@+id/textView5"
+                android:layout_below="@+id/editText2"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText3"
+                android:layout_below="@+id/textView5"
+                android:layout_centerHorizontal="true" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:id="@+id/wrapperEdit">
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/btnEditar"
+                        android:src="@drawable/ic_action_edit"
+                        android:background="#FFFFFF"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="Editar"
+                        android:id="@+id/textView11" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5">
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/btnGuardar"
+                        android:src="@drawable/ic_action_save"
+                        android:gravity="center"
+                        android:background="#FFFFFF"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text="Guardar"
+                        android:id="@+id/textView12" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/editText2"
-            android:layout_below="@+id/textView4"
-            android:layout_centerHorizontal="true" />
+            android:layout_height="match_parent"
+            android:id="@+id/wrapperLocation"
+            android:background="#FFFFFF"
+            android:elevation="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Capacidad"
-            android:id="@+id/textView5"
-            android:layout_below="@+id/editText2"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center_horizontal" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ubicacion"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:id="@+id/textView6"
+                android:layout_below="@+id/editText3"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal" />
 
-        <EditText
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Latitud: 12.1231"
+                android:id="@+id/textView7"
+                android:layout_below="@+id/textView6"
+                android:layout_alignParentStart="true" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Longitud:-63.12321"
+                android:id="@+id/textView8"
+                android:layout_below="@+id/textView7"
+                android:layout_alignParentStart="true" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnEditarUbicacion"
+                android:src="@drawable/ic_action_location"
+                android:layout_gravity="center_horizontal"
+                android:background="#FFFFFF"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/editText3"
-            android:layout_below="@+id/textView5"
-            android:layout_centerHorizontal="true" />
+            android:layout_height="match_parent"
+            android:background="#FFFFFF"
+            android:elevation="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp">
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Editar"
-            android:id="@+id/btnEditar" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Guardar"
-            android:id="@+id/btnGuardar" />
+                android:text="Logo"
+                android:id="@+id/textView9"
+                android:layout_gravity="center_horizontal"
+                android:textAppearance="?android:attr/textAppearanceLarge"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Ubicacion"
-            android:id="@+id/textView6"
-            android:layout_below="@+id/editText3"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center_horizontal" />
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:src="@drawable/no_foto"
+                android:id="@+id/imagePlato"
+                android:layout_gravity="center_horizontal"/>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Latitud: 12.1231"
-            android:id="@+id/textView7"
-            android:layout_below="@+id/textView6"
-            android:layout_alignParentStart="true" />
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:id="@+id/wrapperCamara">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Longitud:-63.12321"
-            android:id="@+id/textView8"
-            android:layout_below="@+id/textView7"
-            android:layout_alignParentStart="true" />
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/btnCamara"
+                        android:src="@drawable/ic_action_camera"
+                        android:background="#FFFFFF"/>
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Editar Ubicacion"
-            android:id="@+id/btnEditarUbicacion"
-            android:layout_gravity="center_horizontal" />
+                </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Logo"
-            android:id="@+id/textView9"
-            android:layout_gravity="center_horizontal" />
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/no_image"
-            android:id="@+id/imagePlato" />
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:id="@+id/wrapperGaleria">
 
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/btnGaleria"
+                        android:src="@drawable/ic_action_edit"
+                        android:gravity="center"
+                        android:background="#FFFFFF"/>
 
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
+
 </ScrollView>

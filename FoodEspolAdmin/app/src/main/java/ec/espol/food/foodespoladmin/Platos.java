@@ -7,24 +7,31 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.content.Intent;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.util.Log;
+import android.widget.Toast;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
 import ec.espol.food.foodespoladmin.Adapters.PlatosAdapter;
-import ec.espol.food.foodespoladmin.Model.Categotia;
-import ec.espol.food.foodespoladmin.Model.Plato;
+import ec.espol.food.foodespoladmin.Controllers.RequestPlatos;
+import ec.espol.food.foodespoladmin.Model.*;
 
-public class Platos extends Fragment {
+public class Platos extends Fragment implements Observer {
 
     private View view;
-    private ArrayList<Plato> platos;
+    private ArrayList<Plato> platos=new ArrayList<Plato>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
 
     }
 
@@ -32,51 +39,62 @@ public class Platos extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view=inflater.inflate(R.layout.activity_platos, container, false);
         Log.i("Mensaje", "Actividad Platos Creada");
+
         Button btNuevoPlato = (Button)view.findViewById(R.id.btnNuevoPlato);
         btNuevoPlato.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(),NuevoPlato.class);
+                Intent intent = new Intent(getContext(), NuevoPlato.class);
                 startActivity(intent);
 
             }
         });
-        platos=new ArrayList<Plato>();
-        Plato p;
-        p= new Plato(1, "Seco de Chivo", 1.25, null);
-        p.addCategotia(Categotia.PIQUEO);
-        platos.add(p);
-        p= new Plato(2, "Seco de iguana", 2.25, null);
-        p.addCategotia(Categotia.ALMUERZO);
-        platos.add(p);
-        p= new Plato(3, "Corviche", 1.00, null);
-        p.addCategotia(Categotia.DESAYUNO);
-        platos.add(p);
-        p= new Plato(4, "Camaleon Frito", 1.00, null);
-        p.addCategotia(Categotia.DESAYUNO);
-        platos.add(p);
-        p= new Plato(5, "Cangrejo Asado", 1.00, null);
-        p.addCategotia(Categotia.DESAYUNO);
-        platos.add(p);
-        p= new Plato(6, "Caldo de vaca", 1.00, null);
-        p.addCategotia(Categotia.DESAYUNO);
-        platos.add(p);
-        p= new Plato(7, "Sopa de Calamar", 1.00, null);
-        p.addCategotia(Categotia.DESAYUNO);
-        platos.add(p);
-        p= new Plato(8, "Frutas", 1.00, null);
-        p.addCategotia(Categotia.DESAYUNO);
-        platos.add(p);
-        p= new Plato(9, "Frutanga", 1.00, null);
-        p.addCategotia(Categotia.DESAYUNO);
-        platos.add(p);
-        p= new Plato(10, "lobo Asado", 1.00, null);
-        p.addCategotia(Categotia.DESAYUNO);
-        platos.add(p);
-        final ListView elements = (ListView) view.findViewById(R.id.listPlatos);
-        final PlatosAdapter adapter = new PlatosAdapter(getContext(), platos);
-        elements.setAdapter(adapter);
+        RequestPlatos requestPlatos =new RequestPlatos(getContext(),this);
+        requestPlatos.getPlatos();
         return view;
+
+    }
+
+    @Override
+    public void update(Object objeto ){
+        JSONArray platosRecibidos;
+        platosRecibidos=(JSONArray) objeto;
+        Log.i("Mensaje", "los platos son "+platosRecibidos);
+        int id;
+        String nombre;
+        double precio;
+        String photoPath;
+        Plato plato;
+        ListView elementsPlatos = (ListView) view.findViewById(R.id.listPlatos);
+        PlatosAdapter adapterPlatos = new PlatosAdapter(getContext(), platos);
+        elementsPlatos.setAdapter(adapterPlatos);
+        elementsPlatos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.i("Mensaje", "Se debe abrir MenuView");
+                Intent intent = new Intent(getContext(), EditarPlato.class);
+                //Bundle data = new Bundle();
+                //MenuView menu = adapter.getMenus().get(position);
+                //data.putSerializable("menu", menu);
+                //intent.putExtras(data);
+                startActivity(intent);
+            }
+        });
+        this.platos.clear();
+        for (int i = 0; i < platosRecibidos.length(); i++) {
+            try {
+                JSONObject row = platosRecibidos.getJSONObject(i);
+                id = row.getInt("id");
+                nombre = row.getString("nombre");
+                precio=row.getDouble("precio");
+                photoPath=row.getString("foto");
+                plato=new Plato(id,nombre,precio,photoPath);
+                this.platos.add(plato);
+            }catch (JSONException e){
+
+            }
+
+        }
 
     }
 

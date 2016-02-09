@@ -134,3 +134,19 @@ exports.getMenus = function(request, response){
 	response.json({menus: result} );
 
 }
+
+exports.getPlatos = function(request, response){
+	idRestautante = request.query.idRestautante;
+	console.log("Get platos ",idRestautante);
+	console.log(Restaurantes[idRestautante]);
+	listPlatos=Restaurantes[idRestautante].platos;
+	var result=[];
+	for (var i = 0; i <listPlatos.length; i++) {
+		plato=platos[listPlatos[i]];
+		result.push({id:listPlatos[i],nombre:plato.nombre,precio:plato.precio,foto:plato.foto});
+	};
+	response.json({platos: result} );
+
+}
+
+

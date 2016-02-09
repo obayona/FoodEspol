@@ -15,6 +15,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.database.Cursor;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.graphics.BitmapFactory;
 import android.graphics.Bitmap;
@@ -29,9 +30,9 @@ import java.io.FileNotFoundException;
 
 public class NuevoPlato extends AppCompatActivity {
 
-    public Button btnGuardar;
-    public Button btnPlatoGaleria;
-    public Button btnPlatoCamara;
+    public ImageButton btnGuardar;
+    public ImageButton btnPlatoGaleria;
+    public ImageButton btnPlatoCamara;
     public int RESULT_LOAD_IMAGE = 1;
     public int REQUEST_CAMERA = 2;
 
@@ -42,7 +43,7 @@ public class NuevoPlato extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        btnGuardar = (Button)findViewById(R.id.btnGuardarPlato);
+        btnGuardar = (ImageButton)findViewById(R.id.btnGuardarPlato);
         btnGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,10 +55,10 @@ public class NuevoPlato extends AppCompatActivity {
             }
         });
 
-        btnPlatoGaleria = (Button)findViewById(R.id.btnPlatoGaleria);
+        btnPlatoGaleria = (ImageButton)findViewById(R.id.btnPlatoGaleria);
         btnPlatoGaleria.setOnClickListener(eventLoadImage);
 
-        btnPlatoCamara = (Button)findViewById(R.id.btnPlatoCamara);
+        btnPlatoCamara = (ImageButton)findViewById(R.id.btnPlatoCamara);
         btnPlatoCamara.setOnClickListener(eventTakeImage);
 
 

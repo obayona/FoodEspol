@@ -3,31 +3,37 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="4dp"
-    android:layout_marginRight="4dp"
-    android:layout_marginBottom="4dp"
-    android:layout_marginTop="4dp"
-    android:elevation="5dp">
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginBottom="10dp"
+    android:layout_marginTop="10dp"
+    android:elevation="5dp"
+    android:background="#FFFFFF"
+    android:gravity="center_vertical">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView2"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/ic_action_calendar_month" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Seco de Chivo"
         android:id="@+id/txtFechaMenu" />
 
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageButton2"
+        android:src="@drawable/ic_action_trash"
+        android:background="#FFFFFF"/>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="X"
-        android:gravity="center"
-        android:id="@+id/btnEliminarMenu" />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="E"
-        android:gravity="center"
-        android:id="@+id/btnEditarMenu" />
 
 </LinearLayout>

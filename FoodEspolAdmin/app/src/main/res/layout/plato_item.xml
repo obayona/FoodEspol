@@ -3,25 +3,29 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="4dp"
-    android:layout_marginRight="4dp"
-    android:layout_marginBottom="4dp"
-    android:layout_marginTop="4dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginBottom="10dp"
+    android:layout_marginTop="10dp"
     android:elevation="5dp">
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imageView"
-        android:src="@drawable/ic_settings"/>
+        android:src="@drawable/ic_action_calendar_month"/>
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="Seco de Chivo"
@@ -34,12 +38,14 @@
             android:text="$2.50"
             android:gravity="end"
             android:id="@+id/txtprecioPlato" />
+
     </LinearLayout>
 
-    <Button
+    <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="X"
-        android:gravity="center"
-        android:id="@+id/btnEliminarPlato" />
+        android:id="@+id/imageButton3"
+        android:src="@drawable/ic_action_trash"
+        android:background="#FFFFFF"/>
+
 </LinearLayout>

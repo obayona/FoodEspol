@@ -1,6 +1,7 @@
 package ec.espol.food.foodespoladmin.Adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,7 +53,6 @@ public class PlatosAdapter extends ArrayAdapter<Plato> {
         Plato currentPlato = this.platos.get(position);
         holder.nombre.setText(currentPlato.getNombre());
         holder.precio.setText(Double.toString(currentPlato.getPrecio()));
-
         return convertView;
     }
 

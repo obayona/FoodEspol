@@ -15,5 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/listMenus"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:focusable="true"
+        android:clickable="true"/>
 </LinearLayout>
