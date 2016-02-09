@@ -41,7 +41,8 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/editText"
+                android:id="@+id/editNombreRestaurante"
+                android:editable="false"
                 android:layout_below="@+id/textView3"
                 android:layout_centerHorizontal="true" />
 
@@ -57,7 +58,8 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/editText2"
+                android:id="@+id/editNombreProp"
+                android:editable="false"
                 android:layout_below="@+id/textView4"
                 android:layout_centerHorizontal="true" />
 
@@ -73,7 +75,8 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/editText3"
+                android:id="@+id/editCapacidad"
+                android:editable="false"
                 android:layout_below="@+id/textView5"
                 android:layout_centerHorizontal="true" />
 

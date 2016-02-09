@@ -32,6 +32,9 @@ exports.getPlatos = function(request, response){
 
 }
 
+exports.getRestaurante = function(request, response){
+	db.getRestaurante(request, response);
+}
 
 exports.eliminarMenu = function(request, response){
 	idRestautante = request.query.idRestautante;
