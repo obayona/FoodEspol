@@ -1,9 +1,11 @@
 package ec.espol.food.foodespoladmin.Model;
 
+import java.io.Serializable;
+
 /**
  * Created by jorge on 7/2/16.
  */
-public class Menu {
+public class Menu implements Serializable {
     private String fecha;
     private int id;
 

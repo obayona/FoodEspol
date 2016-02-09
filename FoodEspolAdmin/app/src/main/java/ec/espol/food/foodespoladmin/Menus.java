@@ -66,12 +66,11 @@ public class Menus extends Fragment implements Observer {
         elements.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.i("Mensaje", "Se debe abrir MenuView");
                 Intent intent = new Intent(getContext(), MenuView.class);
-                //Bundle data = new Bundle();
-                //MenuView menu = adapter.getMenus().get(position);
-                //data.putSerializable("menu", menu);
-                //intent.putExtras(data);
+                Menu menu = adapter.getMenus().get(position);
+                Bundle data = new Bundle();
+                data.putSerializable("menu",menu);
+                intent.putExtras(data);
                 startActivity(intent);
             }
         });

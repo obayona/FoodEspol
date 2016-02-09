@@ -60,6 +60,12 @@
         <activity android:name=".EditarUbicacion" >
         </activity>
         <activity android:name=".MenuView" >
+            android:label="Menu"
+            android:parentActivityName="ec.espol.food.foodespoladmin.Platos"
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ec.espol.food.foodespoladmin.Menus" />
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -67,6 +73,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".EditarPlato" >
+        </activity>
+        <activity android:name=".escogerPlatosMenu" >
         </activity>
     </application>
 

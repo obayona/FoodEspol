@@ -47,4 +47,22 @@ exports.eliminarPlato = function(request, response){
 	db.eliminarPlato(request,response);
 
 }
+exports.getPlatosMenu = function(request, response){
+	idRestautante = request.query.idRestautante;
+	idMenu= request.query.idMenu;
+	console.log("Get Platos Menu ",idRestautante, " ",idMenu);
+	db.getPlatosMenu(request,response);
+
+}
+
+exports.eliminarPlatoMenu = function(request, response){
+	idPlato = request.query.idPlato;
+	idMenu= request.query.idMenu;
+	console.log("eliminar plato de Menu",idMenu, " ",idPlato);
+	db.getPlatosMenu(request,response);
+
+}
+
+
+
 

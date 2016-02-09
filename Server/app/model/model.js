@@ -276,7 +276,6 @@ exports.eliminarMenu = function(request, response){
 			break;
 		}
 	}
-	console.log(Restaurantes[idRestautante]);
 	response.json({ban: true} );
 }
 exports.eliminarPlato = function(request, response){
@@ -313,6 +312,20 @@ exports.eliminarPlato = function(request, response){
 	response.json({ban: true} );
 	
 }
+
+exports.getPlatosMenu = function(request, response){
+	idRestautante = request.query.idRestautante;
+	idMenu = request.query.idMenu;
+	listPlatos=menus[idMenu].platos;
+	var result=[];
+	for (var i = 0; i <listPlatos.length; i++) {
+		plato=platos[listPlatos[i]];
+		result.push({id:listPlatos[i],nombre:plato.nombre,precio:plato.precio,foto:plato.foto});
+	};
+	console.log("la respuesta de los Platos del Menu es ", result)
+	response.json({platos: result} );
+}
+
 
 
 

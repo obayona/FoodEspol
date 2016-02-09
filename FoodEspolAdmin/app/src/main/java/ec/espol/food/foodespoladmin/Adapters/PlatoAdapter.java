@@ -11,7 +11,9 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import ec.espol.food.foodespoladmin.Controllers.RequestMenu;
 import ec.espol.food.foodespoladmin.Controllers.RequestPlatos;
+import ec.espol.food.foodespoladmin.MenuView;
 import ec.espol.food.foodespoladmin.Observer;
 import ec.espol.food.foodespoladmin.R;
 import ec.espol.food.foodespoladmin.Model.Plato;
@@ -19,16 +21,18 @@ import ec.espol.food.foodespoladmin.Model.Plato;
 /**
  * Created by jorge on 7/2/16.
  */
-public class PlatosAdapter extends ArrayAdapter<Plato> {
+public class PlatoAdapter extends ArrayAdapter<Plato> {
     private ArrayList<Plato>platos;
     private Context context;
     private Observer observer;
+    private int idMenu;
 
-    public PlatosAdapter(Context context, ArrayList<Plato> platos,Observer observer) {
+    public PlatoAdapter(Context context, ArrayList<Plato> platos,Observer observer,int idMenu) {
         super(context,0,platos);
         this.platos = platos;
         this.context = context;
         this.observer=observer;
+        this.idMenu=idMenu;
     }
 
     static class ViewHolder{
@@ -40,13 +44,13 @@ public class PlatosAdapter extends ArrayAdapter<Plato> {
         return platos;
     }
 
-    public PlatosAdapter setPlatos(ArrayList<Plato> platos) {
+    public PlatoAdapter setPlatos(ArrayList<Plato> platos) {
         this.platos = platos;
         return this;
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         if(convertView == null){
             convertView = LayoutInflater.from(context).inflate(R.layout.plato_item, parent, false);
             ViewHolder viewHolder = new ViewHolder();
@@ -67,9 +71,9 @@ public class PlatosAdapter extends ArrayAdapter<Plato> {
             private Observer dataObserver=observer;
             @Override
             public void onClick(View v) {
-                Log.i("Mensaje", "Se quiere eliminar un plato");
-                RequestPlatos requestPlatos = new RequestPlatos(getContext(),dataObserver);
-                requestPlatos.eliminarPlato(dataPlato.getId());
+                Log.i("Mensaje", "Se quiere eliminar un plato del Menu");
+                MenuView m =(MenuView) observer;
+                m.removePlato(position);
             }
         });
         return convertView;
