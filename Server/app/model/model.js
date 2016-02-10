@@ -25,7 +25,7 @@ var Restaurantes = {
  	latitud: -2.145130,
  	longitud: -79.967372,
  	numClientes: 12,
- 	logo: "imagenes/panchos.png",
+ 	logo: "imagenes/logo.jpg",
  	platos: [1,2],//id de los platos
  	menu: [1,2] //id de los menus
  },
@@ -184,16 +184,17 @@ exports.validarLogIn = function(request, response){
 exports.guardarPlato = function(request, response){
 	var incoming = new formidable.IncomingForm();
     //Carpeta donde se guardarán los archivos.
-    var rutasimagen = 'app/imagenes/';
+    var rutasimagen = 'app/public/imagenes/';
+    var rutaPublica = '/imagenes/';
+
     incoming.uploadDir = rutasimagen;
-    var pathFoto;
+
 
     incoming.on('fileBegin', function(field, file){
         if(file.name){
             file.path = file.path + file.name;
-            pathFoto = file.path ;
-            console.log('in file begin');
-            console.log(pathFoto);
+            rutaPublica = rutaPublica + file.name;
+
          }
     })
     incoming.on('file', function(field, file){
@@ -206,7 +207,7 @@ exports.guardarPlato = function(request, response){
       		idRestaurante: parseInt(field.idRestaurante),
 			nombre: field.nombre,
 			precio: parseFloat(field.precio),
-			foto: pathFoto,
+			foto: rutaPublica,
 			catPiqueo: parseInt(field.catPiqueo),
 			catComidaRapida:parseInt(field.catComidaRapida),
 			catDesayuno: parseInt(field.catDesayuno),

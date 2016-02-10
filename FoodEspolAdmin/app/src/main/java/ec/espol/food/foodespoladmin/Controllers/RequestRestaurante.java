@@ -12,12 +12,18 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.android.volley.toolbox.ImageRequest;
+
+import android.graphics.Bitmap;
+
+import android.widget.ImageView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import ec.espol.food.foodespoladmin.Observer;
 import ec.espol.food.foodespoladmin.Model.RestauranteInfo;
+import ec.espol.food.foodespoladmin.R;
 
 public class RequestRestaurante {
     private Context context;
@@ -69,4 +75,6 @@ public class RequestRestaurante {
         queue.add(request);
 
     }
+
+
 }
