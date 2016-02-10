@@ -346,103 +346,15 @@ public class Restaurante extends Fragment {
             btnEditarRestaurante.setImageResource(R.drawable.ic_action_lock_closed);
 
 
-            HashMap<String, List<String>> map = restInfo.getHashMap();
+            HashMap<String,String> map = restInfo.getHasJson();
+            request.guardarRestaurante(map);
 
             Log.d("Mensaje", "****Voy a mandar los datos");
-            if(restInfo.bandPath == 1){
-                Log.d("Mensaje", "****Voy a mandar los datos con foto");
-                subirDatosConFoto(map);
-            }
-            else{
-                subirDatosSinFoto(map);
-                Log.d("Mensaje", "****Voy a mandar los datos SIN foto");
-            }
 
 
 
         }
     };
-
-    //sube los datos sin foto
-    public void subirDatosSinFoto(HashMap<String, List<String>> map){
-        //map tiene los campos del reporte y path la ruta de la foto en el sistema de archivos de android
-
-        Log.d("ensaje", "*****estoy en subir restaurante sin foto");
-
-
-        Constants cons = new Constants();
-        String ip = cons.ip;
-        String url = ip + new String("editarRestaurante");
-
-        Future uploading = Ion.with(getContext())
-                .load(url)
-                .progressHandler(new ProgressCallback() {
-                    @Override
-                    public void onProgress(long downloaded, long total) {
-                        // callbacks on progress can happen on the UI thread
-                        // via progressHandler. This is useful if you need to update a TextView.
-                        // Updates to TextViews MUST happen on the UI thread.
-                    }
-                })
-                .setMultipartParameters(map)
-                .asString()
-                .withResponse()
-                .setCallback(new FutureCallback<com.koushikdutta.ion.Response<String>>() {
-                    @Override
-                    public void onCompleted(Exception e, com.koushikdutta.ion.Response<String> result) {
-                        try {
-                            JSONObject jobj = new JSONObject(result.getResult());
-                            Toast.makeText(getContext(), "Reporte enviado con exito", Toast.LENGTH_SHORT).show();
-
-                        } catch (JSONException e1) {
-                            e1.printStackTrace();
-                        }
-                    }
-                });
-    }
-
-    //sube los datos cn foto
-    public void subirDatosConFoto(HashMap<String, List<String>> map){
-        //map tiene los campos del reporte y path la ruta de la foto en el sistema de archivos de android
-
-        Log.d("ensaje", "*****estoy en subir restaurante con foto");
-
-
-        Constants cons = new Constants();
-        String ip = cons.ip;
-        String url = ip + new String("editarRestaurante");
-
-        Log.d("ip", url);
-
-        Future uploading = Ion.with(getContext())
-                .load(url)
-                .progressHandler(new ProgressCallback() {
-                    @Override
-                    public void onProgress(long downloaded, long total) {
-                        // callbacks on progress can happen on the UI thread
-                        // via progressHandler. This is useful if you need to update a TextView.
-                        // Updates to TextViews MUST happen on the UI thread.
-                    }
-                })
-                .setMultipartFile("image", imageFile)
-                .asString()
-                .withResponse()
-                .setCallback(new FutureCallback<com.koushikdutta.ion.Response<String>>() {
-                    @Override
-                    public void onCompleted(Exception e, com.koushikdutta.ion.Response<String> result) {
-                        /*try {
-                            JSONObject jobj = new JSONObject(result.getResult());
-                            Toast.makeText(getContext(), "Reporte enviado con exito", Toast.LENGTH_SHORT).show();
-
-                        } catch (JSONException e1) {
-                            e1.printStackTrace();
-                        }*/
-                    }
-                });
-    }
-
-
-
 
 
 }

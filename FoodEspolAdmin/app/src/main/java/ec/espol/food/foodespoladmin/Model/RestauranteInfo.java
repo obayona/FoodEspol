@@ -30,6 +30,25 @@ public class RestauranteInfo {
 
     }
 
+    public HashMap<String, String> getHasJson(){
+        HashMap<String, String> map = new HashMap<String, String>();
+
+        //idRestaurante
+        map.put("idRestaurante",Integer.toString(Constants.idRestaurante) );
+        //nombre del restaurante
+        map.put("nombre", nombre);
+        //nombre propietario
+        map.put("nombreProp", propietario);
+        //capacidad
+        map.put("capacidad", capacidad);
+        //latitud
+        map.put("latitud",Double.toString(latitud) );
+        //longitud
+        map.put("longitud",Double.toString(longitud) );
+
+        return map;
+    }
+
     public HashMap<String, List<String>> getHashMap(){
 
         HashMap<String, List<String>> map = new HashMap<>();

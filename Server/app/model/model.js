@@ -193,51 +193,22 @@ exports.guardarPlato = function(request, response){
 
 exports.editarRestaurante = function(request, response){
 
-	var incoming = new formidable.IncomingForm();
-    //Carpeta donde se guardarán los archivos.
-    var rutasimagen = 'app/public/imagenes/';
-    var rutaPublica = '/imagenes/';
-
-    incoming.uploadDir = rutasimagen;
+	var field = request.body; 
 
 
-    incoming.on('fileBegin', function(field, file){
-        if(file.name){
-            file.path = file.path + file.name;
-            rutaPublica = rutaPublica + file.name;
+  	console.log("me llego esta guevada", field);
+  	var idRest = parseInt(field.idRestaurante);
+  	restaurante = Restaurantes[idRest];
+	restaurante.nombre = field.nombre;
+	restaurante.administrador.nombre = field.nombreProp;
+	restaurante.capacidad = parseInt(field.capacidad);
+	restaurante.latitud = parseFloat(field.latitud);
+	restaurante.longitud = parseFloat(field.longitud);
 
-         }
-    })
-    incoming.on('file', function(field, file){
-    	console.log('Archivo recibido');
-    });
-    incoming.parse(request,function(err,field,file){
-      	
-      	console.log("me llego esta guevada",field);
-      	dRest = parseInt(field.idRestaurante);
-      	restaurante = Restaurantes[idRest];
- 		restaurante.nombre = field.nombre;
- 		restaurante.administrador.nombre = field.nombreProp;
- 		restaurante.capacidad = parseInt(field.capacidad);
- 		restaurante.latitud = parseFloat(field.latitud);
- 		restaurante.longitud = parseFloat(field.longitud);
+		
+	console.log("****El restaurante", Restaurantes[idRest]);
+  	response.json({"response": "Saved"});
 
-
- 		bandPath = parseInt(field.bandPath);
- 		if(bandPath == 1){
- 			restaurante.logo = rutaPublica;	
- 		}
- 		
- 		console.log("****El restaurante", Restaurantes[idRest]);
-      	response.json({"response": "Saved"});
-    });
-    incoming.on('error',function(err){
-        console.log(err);
-        response.json({'response':"Error"});
-    })
-    incoming.on('end', function(fields, files) { 
-    	console.log('end');
-    });
 
 }
 
