@@ -14,6 +14,8 @@ router.get('/getPlatosMenu',Controller.getPlatosMenu);
 router.get('/eliminarPlatoMenu',Controller.eliminarPlatoMenu);
 router.get('/getRestaurante', Controller.getRestaurante);
 router.post('/postMenu', Controller.postMenu);
+router.post('/editarRestaurante', Controller.editarRestaurante);
+
 
 module.exports = router;
 

@@ -12,12 +12,22 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.android.volley.toolbox.ImageRequest;
+import com.android.volley.Request.Method;
+import com.google.gson.JsonObject;
+
+import android.graphics.Bitmap;
+
+import android.widget.ImageView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashMap;
+
 import ec.espol.food.foodespoladmin.Observer;
 import ec.espol.food.foodespoladmin.Model.RestauranteInfo;
+import ec.espol.food.foodespoladmin.R;
 
 public class RequestRestaurante {
     private Context context;
@@ -69,4 +79,39 @@ public class RequestRestaurante {
         queue.add(request);
 
     }
+
+    public void guardarRestaurante(HashMap<String , String> map) {
+
+        String ip = cons.ip;
+        String url = ip + new String("editarRestaurante");
+
+        JsonObjectRequest request;
+
+        request = new JsonObjectRequest(url, new JSONObject(map),
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            String rp = response.getString("response");
+                            Toast.makeText(context, "Cambios guardados", Toast.LENGTH_LONG).show();
+
+
+                        } catch (JSONException e) {
+                            Toast.makeText(context, "Error en el servidor", Toast.LENGTH_LONG).show();
+                        }
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(context, error.toString(), Toast.LENGTH_LONG).show();
+                    }
+                });
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(request);
+
+
+    }
+
 }
