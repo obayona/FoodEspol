@@ -1,14 +1,18 @@
 package ec.espol.food.foodespoladmin;
 
+import ec.espol.food.foodespoladmin.Controllers.Constants;
 import ec.espol.food.foodespoladmin.Controllers.RequestNuevoPlato;
 import ec.espol.food.foodespoladmin.Model.CategoriaEnum;
 import ec.espol.food.foodespoladmin.Model.Plato;
+import ec.espol.food.foodespoladmin.Model.RestauranteInfo;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -31,11 +35,19 @@ import android.graphics.Matrix;
 import android.os.Environment;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.FileNotFoundException;
+import com.android.volley.toolbox.ImageRequest;
 
 
 public class NuevoPlato extends AppCompatActivity {
@@ -50,6 +62,8 @@ public class NuevoPlato extends AppCompatActivity {
     public File imageFile;
     private RequestNuevoPlato upload;
 
+    private int idPlato = -1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +72,8 @@ public class NuevoPlato extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         btnGuardar = (ImageButton)findViewById(R.id.btnGuardarPlato);
+
+
         btnGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,6 +100,118 @@ public class NuevoPlato extends AppCompatActivity {
         btnPlatoCamara = (ImageButton)findViewById(R.id.btnPlatoCamara);
         btnPlatoCamara.setOnClickListener(eventTakeImage);
 
+        Intent intent = getIntent();
+        idPlato = intent.getIntExtra("idPlato", -1);
+
+        if(idPlato!= -1){
+
+            cargarPlato(idPlato);
+
+
+        }
+
+
+    }
+
+    public void cargarPlato(int idPlato){
+
+
+        JsonObjectRequest request;
+        Constants cons = new Constants();
+
+        String ip = cons.ip;
+        String url = ip + String.format("getPlato?idPlato=%d", idPlato);
+        request = new JsonObjectRequest(Request.Method.GET, url,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        try {
+
+                            String nombre = response.getString("nombre");
+                            int idPlato = response.getInt("idPlato");
+                            String precio = response.getString("precio");
+                            int catComidaRapida = response.getInt("catComidaRapida");
+                            int catPiqueo = response.getInt("catPiqueo");
+                            int catDesayuno = response.getInt("catDesayuno");
+                            int catAlmuerzo = response.getInt("catAlmuerzo");
+                            String foto = response.getString("foto");
+
+                            //agregar codigo
+                            EditText nombreText = (EditText)findViewById(R.id.editNombrePlato);
+                            EditText precioText = (EditText)findViewById(R.id.editPrecioPlato);
+                            nombreText.setText(nombre);
+                            precioText.setText(precio);
+
+                            Switch switchPiqueo = (Switch)findViewById(R.id.switchPiqueo);
+                            Switch switchComidaRapida = (Switch)findViewById(R.id.switchComidaRapida);
+                            Switch switchDesayuno = (Switch)findViewById(R.id.switchDesayuno);
+                            Switch switchAlmuerzo = (Switch)findViewById(R.id.switchAlmuerzo);
+
+                            if(catComidaRapida == 1){
+                                switchComidaRapida.setChecked(true);
+                            }
+                            if(catPiqueo == 1){
+                                switchPiqueo.setChecked(true);
+                            }
+                            if(catDesayuno == 1){
+                                switchDesayuno.setChecked(true);
+                            }
+                            if(catAlmuerzo == 1){
+                                switchAlmuerzo.setChecked(true);
+                            }
+
+                            cargarFoto(foto, idPlato);
+
+
+
+
+                        } catch (JSONException e) {
+                            Toast.makeText(NuevoPlato.this, "Error en el servidor", Toast.LENGTH_LONG).show();
+                        }
+
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(NuevoPlato.this,error.toString(), Toast.LENGTH_LONG).show();
+                    }
+                });
+
+        RequestQueue queue = Volley.newRequestQueue(NuevoPlato.this);
+        queue.add(request);
+
+    }
+
+
+    public void cargarFoto(String path, int id){
+
+        idPlato = id;
+        Constants cons = new Constants();
+        String ip = cons.ip;
+        String url = ip  + path;
+
+        Log.d("*****url", url);
+
+        ImageRequest request = new ImageRequest(url,
+                new Response.Listener<Bitmap>() {
+                    @Override
+                    public void onResponse(Bitmap bitmap) {
+                        ImageView imgView = (ImageView)findViewById(R.id.imagePlato);
+                        Bitmap resizeImage = getResizedBitmap(bitmap, 512, 512);
+                        imgView.setImageBitmap(resizeImage);
+                    }
+                }, 0, 0, null,
+                new Response.ErrorListener() {
+                    public void onErrorResponse(VolleyError error) {
+                        ImageView imgView = (ImageView)findViewById(R.id.imagePlato);
+                        imgView.setImageResource(R.drawable.food);
+                    }
+                });
+        RequestQueue queue = Volley.newRequestQueue(this);
+        queue.add(request);
 
     }
 

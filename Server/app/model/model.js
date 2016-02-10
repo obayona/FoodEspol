@@ -291,6 +291,32 @@ exports.getAllPlatos = function(request, response){
 
 }
 
+exports.getPlato = function(request, response){
+	var idPlato = request.query.idPlato;
+
+
+	idPlatoString = idPlato.toString();
+	
+	var plato = platos[idPlatoString];
+
+	result = {idPlato: idPlato,
+			nombre:plato.nombre,
+			precio:plato.precio,
+			foto:plato.foto,
+			catComidaRapida:plato.catComidaRapida,
+			catPiqueo:plato.catPiqueo,
+			catDesayuno:plato.catDesayuno,
+			catAlmuerzo:plato.catAlmuerzo,
+	};
+
+	console.log(result);
+	response.json(result);
+
+
+
+
+}
+
 exports.eliminarMenu = function(request, response){
 	idRestautante = request.query.idRestautante;
 	idMenu = request.query.idMenu;

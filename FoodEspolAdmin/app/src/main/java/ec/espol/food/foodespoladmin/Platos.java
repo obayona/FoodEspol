@@ -78,10 +78,8 @@ public class Platos extends Fragment implements Observer {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.i("Mensaje", "Se debe abrir MenuView");
                 Intent intent = new Intent(getContext(), NuevoPlato.class);
-                //Bundle data = new Bundle();
-                //MenuView menu = adapter.getMenus().get(position);
-                //data.putSerializable("menu", menu);
-                //intent.putExtras(data);
+                Plato p = platos.get(position);
+                intent.putExtra("idPlato", p.getId() );
                 startActivity(intent);
             }
         });
