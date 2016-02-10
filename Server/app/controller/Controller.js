@@ -84,6 +84,12 @@ exports.editarRestaurante = function(request, response){
 	db.editarRestaurante(request, response);
 }
 
+exports.getRestaurantes = function(request, response){
+
+	db.getRestaurantes(request, response);
+}
+
+
 
 
 

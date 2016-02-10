@@ -4,17 +4,10 @@
     android:layout_height="fill_parent"
     android:paddingTop="60dp">
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnNuevoMenu"
-        android:layout_gravity="center_horizontal"
-        android:text="Nuevo Menu"/>
-
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/listMenus"
+        android:id="@+id/listRestaurantes"
         android:layout_gravity="center_horizontal"
         android:focusable="true"
         android:clickable="true"/>
