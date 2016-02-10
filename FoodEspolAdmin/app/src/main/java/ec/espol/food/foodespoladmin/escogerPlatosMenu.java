@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -58,8 +59,8 @@ public class escogerPlatosMenu extends AppCompatActivity implements Observer {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.i("Mensaje", "Se selecciono un plato");
-                TextView row =(TextView)view.findViewById(R.id.txtprueba);
-                row.setText("Seleccionado");
+                ImageView row =(ImageView)view.findViewById(R.id.selected);
+                row.setImageResource(R.drawable.ic_action_pin);
                 Plato p=adapterPlatoMenu.getPlatos().get(position);
                 c.platosSlected.add(p);
 
