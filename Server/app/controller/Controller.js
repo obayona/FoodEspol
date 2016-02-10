@@ -66,6 +66,16 @@ exports.eliminarPlatoMenu = function(request, response){
 
 }
 
+exports.postMenu = function(request, response){
+	idRestautante = request.body.idRestautante;
+	idMenu= request.body.idMenu;
+	console.log("Guardar Menu ",request.body);
+	db.postMenu(request,response);
+
+}
+
+
+
 
 
 

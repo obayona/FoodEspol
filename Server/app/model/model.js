@@ -12,6 +12,7 @@ var formidable = require('formidable');
 
 
 var contPlatos = 4;
+var contMenus = 4;
 
 var Restaurantes = {
  '1':{
@@ -343,6 +344,29 @@ exports.getPlatosMenu = function(request, response){
 	};
 	console.log("la respuesta de los Platos del Menu es ", result)
 	response.json({platos: result} );
+}
+
+
+
+exports.postMenu = function(request, response){
+	idRestautante = request.body.idRestautante;
+	idMenu = request.body.idMenu;
+	fecha=request.body.fecha;
+	console.log(idRestautante," ",idMenu," ",fecha)
+	if(idMenu=='-1'){
+		contPlatos=contPlatos+1;
+		idMenu=contPlatos;
+	}
+	var newMenu={
+		fecha:fecha,
+		platos:[1,2,3]
+	}
+	console.log(idRestautante," ",idMenu," ",fecha)
+	menus[idMenu]=newMenu;
+	Restaurantes[idRestautante].menu.push(idMenu);
+	response.json({ban: true} );
+
+
 }
 
 

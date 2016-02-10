@@ -9,8 +9,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.app.Dialog;
+import android.app.DatePickerDialog;
+import java.util.Calendar;
+import android.widget.DatePicker;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,6 +31,10 @@ import ec.espol.food.foodespoladmin.Model.Plato;
 public class MenuView extends AppCompatActivity implements  Observer{
     private Menu menu;
     private ArrayList<Plato> platos;
+    private int codeEscogerPlatos = 0;
+    private int year, month, day;
+    private Calendar calendar;
+    private TextView fecha;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,16 +44,29 @@ public class MenuView extends AppCompatActivity implements  Observer{
         Bundle data=getIntent().getExtras();
         TextView titulo = (TextView) findViewById(R.id.txTitleMenu);
         platos= new ArrayList<Plato>();
+        calendar = Calendar.getInstance();
+        year = calendar.get(Calendar.YEAR);
+        month = calendar.get(Calendar.MONTH);
+        day = calendar.get(Calendar.DAY_OF_MONTH);
+        ImageButton agregarPlatos = (ImageButton) findViewById(R.id.btnAgregarPatosMenu);
+        ImageButton escogerFecha = (ImageButton) findViewById(R.id.btnEscogerFechaMenu);
+        ImageButton guardarMenu = (ImageButton) findViewById(R.id.btnGuardarMenu);
+        fecha = (TextView) findViewById(R.id.txtFechaMenu);
+        agregarPlatos.setOnClickListener(eventEscogerPlatos);
+        escogerFecha.setOnClickListener(eventEscogerFecha);
+        guardarMenu.setOnClickListener(eventGuardarMenu);
+
         if(data!=null) {
             titulo.setText("Menu");
             menu = (Menu) data.getSerializable("menu");
             Log.i("Mensaje", "El Menu Seleccionado es " + menu.getId());
-            TextView fecha = (TextView) findViewById(R.id.txtFechaMenu);
+
             fecha.setText(menu.getFecha());
             RequestMenu requestMenu = new RequestMenu(getBaseContext(),this);
             requestMenu.getPlatosMenu(menu.getId());
         }else {
             titulo.setText("Nuevo Menu");
+            menu=new Menu(-1,null);
         }
     }
 
@@ -97,4 +119,62 @@ public class MenuView extends AppCompatActivity implements  Observer{
         }
 
     }
+
+    public View.OnClickListener eventEscogerPlatos = new View.OnClickListener(){
+        @Override
+        public void onClick(View view){
+            Intent intent = new Intent(MenuView.this, escogerPlatosMenu.class);
+
+            startActivityForResult(intent, codeEscogerPlatos);
+        }
+
+    };
+    public View.OnClickListener eventEscogerFecha = new View.OnClickListener(){
+        @SuppressWarnings("deprecation")
+        @Override
+        public void onClick(View view){
+
+            showDialog(999);
+        }
+
+    };
+
+    @SuppressWarnings("deprecation")
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        // TODO Auto-generated method stub
+        if (id == 999) {
+            return new DatePickerDialog(this, myDateListener, year, month, day);
+        }
+        return null;
+    }
+    private String generateDate(int year, int month, int day) {
+        return Integer.toString(day)+"/"+Integer.toString(month)+"/"+Integer.toString(year);
+    }
+
+    private DatePickerDialog.OnDateSetListener myDateListener = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker arg0, int arg1, int arg2, int arg3) {
+            // TODO Auto-generated method stub
+            // arg1 = year
+            // arg2 = month
+            // arg3 = day
+            //showDate(arg1, arg2+1, arg3);
+
+            menu.setFecha(generateDate(arg1, arg2+1, arg3));
+            fecha.setText(menu.getFecha());
+        }
+    };
+
+    public View.OnClickListener eventGuardarMenu = new View.OnClickListener(){
+        @SuppressWarnings("deprecation")
+        @Override
+        public void onClick(View view){
+
+            RequestMenu requestMenu =new RequestMenu(MenuView.this,MenuView.this);
+            requestMenu.postMenu(menu);
+        }
+
+    };
+
 }
