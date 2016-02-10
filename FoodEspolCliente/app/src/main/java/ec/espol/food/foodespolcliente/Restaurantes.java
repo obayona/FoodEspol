@@ -54,6 +54,7 @@ public class Restaurantes extends Fragment implements Observer {
             try {
                 Log.i("Mensaje", "Agregador "+i);
                 JSONObject row = restaurantesRecibidos.getJSONObject(i);
+                int id =row.getInt("id");
                 String propietario=row.getJSONObject("administrador").getString("nombre");
                 String nombre=row.getString("nombre");
                 String capacidad=row.getString("capacidad");
@@ -61,7 +62,7 @@ public class Restaurantes extends Fragment implements Observer {
                 double longitud=row.getDouble("longitud");
                 String logo=row.getString("logo");
                 String aproximado=row.getString("numClientes");
-                RestauranteInfo restauranteInfo=new RestauranteInfo(propietario,nombre,capacidad,latitud,longitud,logo,aproximado);
+                RestauranteInfo restauranteInfo=new RestauranteInfo(id,propietario,nombre,capacidad,latitud,longitud,logo,aproximado);
                 restaurantes.add(restauranteInfo);
             }catch (JSONException e){
 

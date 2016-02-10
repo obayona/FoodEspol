@@ -15,11 +15,13 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import ec.espol.food.foodespolcliente.Controllers.RequestPlatos;
+import ec.espol.food.foodespolcliente.MenuView;
 import ec.espol.food.foodespolcliente.Model.RestauranteInfo;
 import ec.espol.food.foodespolcliente.Observer;
 import ec.espol.food.foodespolcliente.PlatoView;
 import ec.espol.food.foodespolcliente.R;
 import ec.espol.food.foodespolcliente.Model.Plato;
+import ec.espol.food.foodespolcliente.RestauranteVista;
 import ec.espol.food.foodespolcliente.Restaurantes;
 
 /**
@@ -83,6 +85,10 @@ public class RestauranteAdapter extends ArrayAdapter<RestauranteInfo> {
             @Override
             public void onClick(View v) {
                 Log.i("Mensaje", "Informacion Restaurante");
+                Intent intent = new Intent(context, RestauranteVista.class);
+                intent.putExtra("idRestaurante",currentRestaurante.getId());
+                context.startActivity(intent);
+
 
             }
         });
@@ -94,6 +100,9 @@ public class RestauranteAdapter extends ArrayAdapter<RestauranteInfo> {
             @Override
             public void onClick(View v) {
                 Log.i("Mensaje", "Informacion Restaurante");
+                Intent intent = new Intent(context, MenuView.class);
+                intent.putExtra("idRestaurante",currentRestaurante.getId());
+                context.startActivity(intent);
 
             }
         });

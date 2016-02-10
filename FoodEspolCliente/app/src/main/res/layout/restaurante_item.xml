@@ -87,7 +87,7 @@
         android:layout_width="wrap_content"
         android:layout_height="69dp"
         android:id="@+id/btnMenuRestaurante"
-        android:src="@drawable/ic_action_calendar_month"
+        android:src="@drawable/ic_action_book"
         android:background="#FFFFFF" />
 
 

@@ -39,12 +39,13 @@ android:layout_width="match_parent">
             android:layout_gravity="center_horizontal"/>
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/NombreRestaurante"
             android:enabled="false"
             android:layout_below="@+id/textView3"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -56,12 +57,13 @@ android:layout_width="match_parent">
             android:layout_gravity="center_horizontal"/>
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/NombreProp"
             android:enabled="false"
             android:layout_below="@+id/textView4"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -73,12 +75,13 @@ android:layout_width="match_parent">
             android:layout_gravity="center_horizontal" />
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/Capacidad"
             android:enabled="false"
             android:layout_below="@+id/textView5"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"/>
 
 
     </LinearLayout>

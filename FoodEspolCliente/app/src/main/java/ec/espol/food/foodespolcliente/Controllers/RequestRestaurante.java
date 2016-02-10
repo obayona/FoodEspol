@@ -4,6 +4,7 @@ package ec.espol.food.foodespolcliente.Controllers;
  * Created by oswaldoalejandro on 10/02/16.
  */
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -47,15 +48,24 @@ public class RequestRestaurante {
                     public void onResponse(JSONObject response) {
 
                         try {
-
+                            Log.i("Mensaje", "XXXXXXX restaurante "+response);
+                            int id =response.getInt("id");
+                            Log.i("Mensaje", "YYYYYYYY 1 ");
                             String propietario = response.getString("nombreProp");
+                            Log.i("Mensaje", "YYYYYYYY 2 ");
                             String nombre = response.getString("nombre");
+                            Log.i("Mensaje", "YYYYYYYY 3 ");
                             String capacidad = response.getString("capacidad");
+                            Log.i("Mensaje", "YYYYYYYY 4 ");
                             double latitud = response.getDouble("latitud");
+                            Log.i("Mensaje", "YYYYYYYY 5 ");
                             double longitud = response.getDouble("longitud");
+                            Log.i("Mensaje", "YYYYYYYY 6 ");
                             String logo = response.getString("logo");
+                            Log.i("Mensaje", "YYYYYYYY 7 ");
                             String aproximado=response.getString("numClientes");
-                            RestauranteInfo rest = new RestauranteInfo(propietario, nombre, capacidad,
+                            Log.i("Mensaje", "YYYYYYYY 8 ");
+                            RestauranteInfo rest = new RestauranteInfo(id,propietario, nombre, capacidad,
                                     latitud, longitud, logo,aproximado);
                             observer.update(rest);
 

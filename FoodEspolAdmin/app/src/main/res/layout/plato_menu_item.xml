@@ -10,12 +10,6 @@
     android:elevation="5dp"
     android:id="@+id/contenedor">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageView"
-        android:src="@drawable/ic_action_calendar_month"/>
-
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="wrap_content"
@@ -32,13 +26,27 @@
             android:text="Seco de Chivo"
             android:id="@+id/txtNombrePlato" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="$2.50"
-            android:gravity="end"
-            android:id="@+id/txtprecioPlato" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="$"
+                android:id="@+id/textView8" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="0.00"
+                android:gravity="end"
+                android:id="@+id/txtprecioPlato" />
+
+        </LinearLayout>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="0dp"

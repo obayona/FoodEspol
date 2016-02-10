@@ -4,6 +4,7 @@ package ec.espol.food.foodespolcliente.Model;
  * Created by oswaldoalejandro on 09/02/16.
  */
 public class RestauranteInfo {
+    public int id;
     public String propietario;
     public String nombre;
     public String capacidad;
@@ -75,9 +76,12 @@ public class RestauranteInfo {
     }
 
 
+    public int getId() {
+        return id;
+    }
 
-    public RestauranteInfo(String propietario, String nombre, String capacidad, double latitud, double longitud, String logo,String aproximado  ){
-
+    public RestauranteInfo(int id,String propietario, String nombre, String capacidad, double latitud, double longitud, String logo,String aproximado  ){
+        this.id=id;
         this.propietario = propietario;
         this.nombre = nombre;
         this.capacidad = capacidad;

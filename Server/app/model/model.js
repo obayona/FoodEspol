@@ -221,14 +221,16 @@ exports.getRestaurante = function(request, response){
 
 	var idRest = idRestaurante.toString();
 	var restaurante = Restaurantes[idRest];
-
+	console.log("%%%%% el id del restaurante ",idRest)
 	var Rest = {
+		id:idRest,
 		nombreProp: restaurante.administrador.nombre,
 		nombre: restaurante.nombre,
 		capacidad: restaurante.capacidad,
 		latitud: restaurante.latitud,
 		longitud: restaurante.longitud,
-		logo: restaurante.logo
+		logo: restaurante.logo,
+		numClientes:2
 	}
 
 	response.json(Rest);
@@ -379,6 +381,8 @@ exports.getRestaurantes = function(request, response){
 	console.log("get Restaurantes")
 	var result=[];
 	for (var i = 1; i <=contRestaurantes; i++) {
+		var restaurante=Restaurantes[i];
+		restaurante.id=i;
 		result.push(Restaurantes[i]);
 	};
 	response.json({restaurantes: result} );
