@@ -49,7 +49,7 @@ public class Restaurantes extends Fragment implements Observer {
         final ListView elementsRestaurantes = (ListView) view.findViewById(R.id.listRestaurantes);
         final RestauranteAdapter adapter = new RestauranteAdapter(getContext(), restaurantes,this);
         elementsRestaurantes.setAdapter(adapter);
-
+        restaurantes.clear();
         for (int i = 0; i < restaurantesRecibidos.length(); i++) {
             try {
                 Log.i("Mensaje", "Agregador "+i);

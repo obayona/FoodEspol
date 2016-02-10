@@ -4,13 +4,13 @@ package ec.espol.food.foodespolcliente.Model;
  * Created by oswaldoalejandro on 09/02/16.
  */
 public class RestauranteInfo {
-    private String propietario;
-    private String nombre;
-    private String capacidad;
-    private double latitud;
+    public String propietario;
+    public String nombre;
+    public String capacidad;
+    public double latitud;
     public double longitud;
-    private String logo;
-    private String aproximado;
+    public String logo;
+    public String aproximado;
 
     public void setAproximado(String aproximado) {
         this.aproximado = aproximado;

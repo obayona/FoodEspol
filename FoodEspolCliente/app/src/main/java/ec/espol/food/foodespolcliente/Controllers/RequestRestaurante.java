@@ -54,8 +54,9 @@ public class RequestRestaurante {
                             double latitud = response.getDouble("latitud");
                             double longitud = response.getDouble("longitud");
                             String logo = response.getString("logo");
+                            String aproximado=response.getString("numClientes");
                             RestauranteInfo rest = new RestauranteInfo(propietario, nombre, capacidad,
-                                    latitud, longitud, logo);
+                                    latitud, longitud, logo,aproximado);
                             observer.update(rest);
 
                         } catch (JSONException e) {
