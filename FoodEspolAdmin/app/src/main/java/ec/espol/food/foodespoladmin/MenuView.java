@@ -24,6 +24,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import ec.espol.food.foodespoladmin.Adapters.PlatoAdapter;
+import ec.espol.food.foodespoladmin.Controllers.Constants;
 import ec.espol.food.foodespoladmin.Controllers.RequestMenu;
 import ec.espol.food.foodespoladmin.Model.Menu;
 import ec.espol.food.foodespoladmin.Model.Plato;
@@ -92,7 +93,6 @@ public class MenuView extends AppCompatActivity implements  Observer{
     public void update(Object objeto ){
         JSONArray platosRecibidos;
         platosRecibidos=(JSONArray) objeto;
-        Log.i("Mensaje", "los platos son "+platosRecibidos);
         int id;
         String nombre;
         double precio;
@@ -176,5 +176,20 @@ public class MenuView extends AppCompatActivity implements  Observer{
         }
 
     };
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        Constants c=new Constants();
+        ArrayList<Plato> platosSelected = c.platosSlected;
+        ListView elementsPlatos = (ListView) findViewById(R.id.listPlatoMenu);
+        PlatoAdapter adapterPlatos = new PlatoAdapter(this, platos,this,menu.getId());
+        elementsPlatos.setAdapter(adapterPlatos);
+        for(Plato p: platosSelected){
+            Log.i("Mensaje", "plato Agregado "+p);
+            platos.add(p);
+
+        }
+
+    }
 
 }

@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -20,20 +21,24 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import ec.espol.food.foodespoladmin.Adapters.PlatoMenuAdapter;
+import ec.espol.food.foodespoladmin.Controllers.Constants;
 import ec.espol.food.foodespoladmin.Controllers.RequestPlatos;
 import ec.espol.food.foodespoladmin.Model.Menu;
 import ec.espol.food.foodespoladmin.Model.Plato;
 
 public class escogerPlatosMenu extends AppCompatActivity implements Observer {
     private ArrayList<Plato> platos=new ArrayList<Plato>();
-    private ArrayList<Plato> platosSlected;
+    private Constants c=new Constants();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_escoger_platos_menu);
         RequestPlatos requestPlatos = new RequestPlatos(this,this);
         requestPlatos.getPlatos();
-        platosSlected=new ArrayList<Plato>();
+        c.platosSlected=new ArrayList<Plato>();
+        ImageButton botonAgregar =(ImageButton)findViewById(R.id.btnAgregarPatosMenu);
+        botonAgregar.setOnClickListener( clickGuardar);
+
     }
 
     @Override
@@ -56,7 +61,7 @@ public class escogerPlatosMenu extends AppCompatActivity implements Observer {
                 TextView row =(TextView)view.findViewById(R.id.txtprueba);
                 row.setText("Seleccionado");
                 Plato p=adapterPlatoMenu.getPlatos().get(position);
-                platosSlected.add(p);
+                c.platosSlected.add(p);
 
             }
         });
@@ -78,4 +83,20 @@ public class escogerPlatosMenu extends AppCompatActivity implements Observer {
         }
 
     }
+
+    public View.OnClickListener clickGuardar = new View.OnClickListener() {
+
+        @Override
+        public void onClick(View view) {
+            Log.d("Imprimo", "estoy llamando al observae");
+
+            Intent intent = new Intent();
+            //Bundle data = new Bundle();
+            //data.putSerializable("Platos",platosSlected);
+            //intent.putExtras(data);
+            setResult(0, intent);
+            finish();
+
+        }
+    };
 }

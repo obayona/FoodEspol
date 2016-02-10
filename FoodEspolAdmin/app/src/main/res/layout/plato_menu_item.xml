@@ -39,13 +39,14 @@
             android:text="$2.50"
             android:gravity="end"
             android:id="@+id/txtprecioPlato" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:id="@+id/txtprueba" />
 
     </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:id="@+id/txtprueba" />
+
 
 
 </LinearLayout>
