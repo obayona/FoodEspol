@@ -6,6 +6,8 @@ package ec.espol.food.foodespolcliente.Adapters;
 
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,11 +15,13 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.ArrayAdapter;
+import java.io.Serializable;
 
 import java.util.ArrayList;
 
 import ec.espol.food.foodespolcliente.Controllers.RequestPlatos;
 import ec.espol.food.foodespolcliente.Observer;
+import ec.espol.food.foodespolcliente.PlatoView;
 import ec.espol.food.foodespolcliente.R;
 import ec.espol.food.foodespolcliente.Model.Plato;
 
@@ -63,8 +67,27 @@ public class PlatosAdapter extends ArrayAdapter<Plato> {
         final Plato currentPlato = this.platos.get(position);
         holder.nombre.setText(currentPlato.getNombre());
         holder.precio.setText(Double.toString(currentPlato.getPrecio()));
-
+        ImageButton informacion =(ImageButton)convertView.findViewById(R.id.btnInformacion);
+        informacion.setFocusable(false);
+        informacion.setClickable(false);
         observer=this.observer;
+        informacion.setOnClickListener(new View.OnClickListener() {
+            private Plato dataPlato = currentPlato;
+            private Observer dataObserver = observer;
+
+            @Override
+            public void onClick(View v) {
+                Log.i("Mensaje", "Se selecciona un plato");
+                Intent intent = new Intent(context, PlatoView.class);
+
+                intent.putExtra("id",currentPlato.getId());
+                intent.putExtra("nombre",currentPlato.getNombre());
+                intent.putExtra("foto",currentPlato.getPhotoPath());
+                intent.putExtra("precio",currentPlato.getPrecio());
+                context.startActivity(intent);
+
+            }
+        });
 
         return convertView;
     }

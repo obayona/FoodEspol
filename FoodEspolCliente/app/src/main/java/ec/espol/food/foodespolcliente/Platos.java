@@ -16,6 +16,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import ec.espol.food.foodespolcliente.Model.Plato;
@@ -23,7 +24,7 @@ import ec.espol.food.foodespolcliente.Controllers.RequestPlatos;
 import ec.espol.food.foodespolcliente.Adapters.PlatosAdapter;
 
 
-public class Platos extends Fragment implements Observer {
+public class Platos extends Fragment implements Observer, Serializable {
     private View view;
     private ArrayList<Plato> platos=new ArrayList<Plato>();
 
