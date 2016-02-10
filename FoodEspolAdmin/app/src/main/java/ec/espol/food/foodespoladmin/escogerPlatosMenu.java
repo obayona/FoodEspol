@@ -26,13 +26,14 @@ import ec.espol.food.foodespoladmin.Model.Plato;
 
 public class escogerPlatosMenu extends AppCompatActivity implements Observer {
     private ArrayList<Plato> platos=new ArrayList<Plato>();
-
+    private ArrayList<Plato> platosSlected;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_escoger_platos_menu);
         RequestPlatos requestPlatos = new RequestPlatos(this,this);
         requestPlatos.getPlatos();
+        platosSlected=new ArrayList<Plato>();
     }
 
     @Override
@@ -46,14 +47,16 @@ public class escogerPlatosMenu extends AppCompatActivity implements Observer {
         String photoPath;
         Plato plato;
         ListView elementsPlatos = (ListView) findViewById(R.id.listPlatos);
-        PlatoMenuAdapter adapterPlatoMenu = new PlatoMenuAdapter(this,platos,this);
+        final PlatoMenuAdapter adapterPlatoMenu = new PlatoMenuAdapter(this,platos,this);
         elementsPlatos.setAdapter(adapterPlatoMenu);
         elementsPlatos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.i("Mensaje", "Se selecciono un plato");
                 TextView row =(TextView)view.findViewById(R.id.txtprueba);
-                row.setText("seleccionado");
+                row.setText("Seleccionado");
+                Plato p=adapterPlatoMenu.getPlatos().get(position);
+                platosSlected.add(p);
 
             }
         });

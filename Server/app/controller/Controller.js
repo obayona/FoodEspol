@@ -66,7 +66,7 @@ exports.eliminarPlatoMenu = function(request, response){
 
 }
 
-<<<<<<< HEAD
+
 exports.postMenu = function(request, response){
 	idRestautante = request.body.idRestautante;
 	idMenu= request.body.idMenu;
@@ -77,13 +77,12 @@ exports.postMenu = function(request, response){
 
 
 
-=======
+
 exports.editarRestaurante = function(request, response){
 
 	db.editarRestaurante(request, response);
 }
 
->>>>>>> b9137c91ea4fc2ce97875d717eb38eb6d76cef3c
 
 
 
