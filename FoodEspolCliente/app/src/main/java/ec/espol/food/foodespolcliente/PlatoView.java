@@ -3,7 +3,6 @@ package ec.espol.food.foodespolcliente;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.ImageView;
@@ -13,6 +12,8 @@ import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.view.Gravity;
+import android.view.View;
+import android.widget.Button;
 
 import android.util.Log;
 
@@ -35,6 +36,7 @@ public class PlatoView extends AppCompatActivity {
     int catPiqueo;
     int catDesayuno;
     int catAlmuerzo;
+    int idRestaurante = 0;
 
 
     @Override
@@ -50,6 +52,7 @@ public class PlatoView extends AppCompatActivity {
         catPiqueo = intent.getIntExtra("catPiqueo", 0);
         catDesayuno = intent.getIntExtra("catDesayuno", 0);
         catAlmuerzo = intent.getIntExtra("catAlmuerzo",0);
+        idRestaurante = intent.getIntExtra("idRestaurante", 0);
 
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -88,6 +91,9 @@ public class PlatoView extends AppCompatActivity {
             text.setGravity(Gravity.CENTER);
             contenedor.addView(text);
         }
+
+        Button btnRestaurante = (Button)findViewById(R.id.btnVerRestPlato);
+        btnRestaurante.setOnClickListener(eventRestaurante);
 
         cargarImagen();
 
@@ -151,6 +157,19 @@ public class PlatoView extends AppCompatActivity {
 
         return resizedBitmap;
     }
+
+    public View.OnClickListener eventRestaurante = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent;
+            intent = new Intent(PlatoView.this, RestauranteVista.class);
+            intent.putExtra("idRestaurante", idRestaurante);
+
+            startActivity(intent);
+
+
+        }
+    };
 
 
 }

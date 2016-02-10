@@ -54,6 +54,7 @@ public class Platos extends Fragment implements Observer, Serializable {
         String nombre;
         double precio;
         String photoPath;
+        int idRestaurante;
         Plato plato;
         ListView elementsPlatos = (ListView) view.findViewById(R.id.listPlatos);
         PlatosAdapter adapterPlatos = new PlatosAdapter(getContext(), platos,this);
@@ -69,8 +70,10 @@ public class Platos extends Fragment implements Observer, Serializable {
                 nombre = row.getString("nombre");
                 precio=row.getDouble("precio");
                 photoPath=row.getString("foto");
+                idRestaurante = row.getInt("idRestaurante");
 
-                plato=new Plato(id,nombre,precio,photoPath);
+
+                plato=new Plato(id,nombre,precio,photoPath, idRestaurante);
                 plato.catComidaRapida = row.getInt("catComidaRapida");
                 plato.catPiqueo = row.getInt("catPiqueo");
                 plato.catDesayuno = row.getInt("catDesayuno");

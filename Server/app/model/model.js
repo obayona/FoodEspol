@@ -268,7 +268,8 @@ exports.getAllPlatos = function(request, response){
 	for (it in platos){
 		var plato = platos[it];
 
-		result.push({id:it, idRestautante: plato.idRestautante,
+		result.push({id:it, 
+			idRestaurante: plato.idRestaurante,
 			nombre:plato.nombre,
 			precio:plato.precio,
 			foto:plato.foto,
