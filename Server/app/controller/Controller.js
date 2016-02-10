@@ -66,6 +66,11 @@ exports.eliminarPlatoMenu = function(request, response){
 
 }
 
+exports.editarRestaurante = function(request, response){
+
+	db.editarRestaurante(request, response);
+}
+
 
 
 

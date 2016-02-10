@@ -135,51 +135,6 @@ exports.validarLogIn = function(request, response){
  	
 }
 
-/*exports.guardarPlato = function(request, response){
-	var plato = request.body;
-
-	var idRestaurante = plato.idRestaurante;
-	contPlatos+=1;
-
-	var categorias = [];
-
-	var strBase = "categoria";
-	var cont = 1;
-
-	var strIt = strBase + cont;
-	for (var i = cont; i < 4; i++){
-		cat = plato[strIt]
-		if(cat){
-			console.log(cat, strIt)
-			categorias.push(parseInt(cat)) ;
-		}
-		cont +=1;
-		strIt = strBase + cont;
-	}
-
-	var newPlato = {
-		nombre: plato.nombre,
-		precio: plato.precio,
-		categorias: categorias,
-		foto: "imagens/arrozpollo.png" 
-	}
-
-	
-
-	var idNewPlato = contPlatos.toString();
-	platos[idNewPlato] = newPlato;
-
-	
-	console.log("idRestaurante", idRestaurante);
-	Restaurantes[idRestaurante].platos.push(contPlatos);
-
-	console.log(platos);
-	console.log(Restaurantes);
-
-	response.json({idPlato: contPlatos});
-
-
-}*/
 
 exports.guardarPlato = function(request, response){
 	var incoming = new formidable.IncomingForm();
@@ -234,6 +189,56 @@ exports.guardarPlato = function(request, response){
     	console.log('end');
     });
     
+}
+
+exports.editarRestaurante = function(request, response){
+
+	var incoming = new formidable.IncomingForm();
+    //Carpeta donde se guardarán los archivos.
+    var rutasimagen = 'app/public/imagenes/';
+    var rutaPublica = '/imagenes/';
+
+    incoming.uploadDir = rutasimagen;
+
+
+    incoming.on('fileBegin', function(field, file){
+        if(file.name){
+            file.path = file.path + file.name;
+            rutaPublica = rutaPublica + file.name;
+
+         }
+    })
+    incoming.on('file', function(field, file){
+    	console.log('Archivo recibido');
+    });
+    incoming.parse(request,function(err,field,file){
+      	
+      	console.log("me llego esta guevada",field);
+      	dRest = parseInt(field.idRestaurante);
+      	restaurante = Restaurantes[idRest];
+ 		restaurante.nombre = field.nombre;
+ 		restaurante.administrador.nombre = field.nombreProp;
+ 		restaurante.capacidad = parseInt(field.capacidad);
+ 		restaurante.latitud = parseFloat(field.latitud);
+ 		restaurante.longitud = parseFloat(field.longitud);
+
+
+ 		bandPath = parseInt(field.bandPath);
+ 		if(bandPath == 1){
+ 			restaurante.logo = rutaPublica;	
+ 		}
+ 		
+ 		console.log("****El restaurante", Restaurantes[idRest]);
+      	response.json({"response": "Saved"});
+    });
+    incoming.on('error',function(err){
+        console.log(err);
+        response.json({'response':"Error"});
+    })
+    incoming.on('end', function(fields, files) { 
+    	console.log('end');
+    });
+
 }
 
 exports.getRestaurante = function(request, response){

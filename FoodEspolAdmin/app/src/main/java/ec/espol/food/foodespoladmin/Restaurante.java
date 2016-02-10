@@ -1,9 +1,14 @@
 package ec.espol.food.foodespoladmin;
 
 import android.app.Activity;
+import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,15 +20,28 @@ import android.util.Log;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.android.gms.maps.model.LatLng;
+import com.koushikdutta.async.future.FutureCallback;
+import com.koushikdutta.ion.Ion;
+import com.koushikdutta.ion.ProgressCallback;
 
-import java.io.Serializable;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.concurrent.Future;
 
 import ec.espol.food.foodespoladmin.Controllers.Constants;
 import ec.espol.food.foodespoladmin.Controllers.RequestRestaurante;
@@ -39,6 +57,10 @@ public class Restaurante extends Fragment {
     private TextView latitud;
     private TextView longitud;
     private ImageButton btnEditarRestaurante;
+    private ImageButton btnRestGaleria;
+    private ImageButton btnRestCamara;
+    private ImageButton btnRestGuardar;
+
     private RequestRestaurante request;
     private ImageButton btnEditarUbicacion;
     private RestauranteInfo restInfo;
@@ -47,6 +69,8 @@ public class Restaurante extends Fragment {
     private int codeLocalization = 0;
     private int codeGalery = 1;
     private int codeCamera = 2;
+    public File imageFile = null;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -69,6 +93,15 @@ public class Restaurante extends Fragment {
 
         btnEditarRestaurante = (ImageButton)view.findViewById(R.id.btnEditarRestaurante);
         btnEditarRestaurante.setOnClickListener(eventiEditTexto);
+
+        btnRestGaleria =  (ImageButton)view.findViewById(R.id.btnRestGaleria);
+        btnRestGaleria.setOnClickListener(eventGaleria);
+
+        btnRestCamara = (ImageButton)view.findViewById(R.id.btnRestCamara);
+        btnRestCamara.setOnClickListener(eventCamera);
+
+        btnRestGuardar = (ImageButton)view.findViewById(R.id.btnRestGuardar);
+        btnRestGuardar.setOnClickListener(eventGuardar);
 
         return view;
 
@@ -115,7 +148,8 @@ public class Restaurante extends Fragment {
                     @Override
                     public void onResponse(Bitmap bitmap) {
                         ImageView imgView = (ImageView)view.findViewById(R.id.imageLogoRestaurante);
-                        imgView.setImageBitmap(bitmap);
+                        Bitmap resizeImage = getResizedBitmap(bitmap, 256, 256);
+                        imgView.setImageBitmap(resizeImage);
                     }
                 }, 0, 0, null,
                 new Response.ErrorListener() {
@@ -148,8 +182,78 @@ public class Restaurante extends Fragment {
             longitud.setText(strLongitud);
         }
 
+
+        if (requestCode == codeGalery && resultCode == Activity.RESULT_OK && null != data) {
+            Uri selectedImage = data.getData();
+            String[] filePathColumn = {MediaStore.Images.Media.DATA};
+
+            Cursor cursor = getContext().getContentResolver().query(selectedImage,
+                    filePathColumn, null, null, null);
+            cursor.moveToFirst();
+
+            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+            String picturePath = cursor.getString(columnIndex);
+            imageFile = new File(picturePath); //copio el path
+
+            cursor.close();
+
+            Bitmap image = BitmapFactory.decodeFile(picturePath);
+            Bitmap resizeImage = getResizedBitmap(image, 256, 256);
+
+            ImageView imgView = (ImageView)view.findViewById(R.id.imageLogoRestaurante);
+            imgView.setImageBitmap(resizeImage);
+
+        }
+
+        if(requestCode == codeCamera && resultCode == Activity.RESULT_OK && null !=data ){
+
+            Bitmap imagen = (Bitmap) data.getExtras().get("data");
+            ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+            imagen.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
+            //String picturePath =
+            File destination = new File(Environment.getExternalStorageDirectory(),
+                    System.currentTimeMillis() + ".jpg");
+
+            imageFile = destination; //copio el path
+
+            FileOutputStream fo;
+            try {
+                destination.createNewFile();
+                fo = new FileOutputStream(destination);
+                fo.write(bytes.toByteArray());
+                fo.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Bitmap resizeImage = getResizedBitmap(imagen, 256,256);
+
+            ImageView imgView = (ImageView)view.findViewById(R.id.imageLogoRestaurante);
+            imgView.setImageBitmap(resizeImage);
+
+        }
+
+
     }
 
+    public Bitmap getResizedBitmap(Bitmap bm, int newHeight, int newWidth) {
+        int width = bm.getWidth();
+        int height = bm.getHeight();
+        float scaleWidth = ((float) newWidth) / width;
+        float scaleHeight = ((float) newHeight) / height;
+
+        // create a matrix for the manipulation
+        Matrix matrix = new Matrix();
+
+        // resize the bit map
+        matrix.postScale(scaleWidth, scaleHeight);
+
+        // recreate the new Bitmap
+        Bitmap resizedBitmap = Bitmap.createBitmap(bm, 0, 0, width, height, matrix, false);
+
+        return resizedBitmap;
+    }
 
 
     public View.OnClickListener eventEditUbicacion = new View.OnClickListener(){
@@ -157,7 +261,7 @@ public class Restaurante extends Fragment {
         public void onClick(View view){
             Intent intent = new Intent(getContext(), MapsActivity.class);
 
-            intent.putExtra("Latitud",restInfo.latitud);
+            intent.putExtra("Latitud", restInfo.latitud);
             intent.putExtra("Longitud", restInfo.longitud);
 
             startActivityForResult(intent, codeLocalization);
@@ -178,6 +282,167 @@ public class Restaurante extends Fragment {
         }
 
     };
+
+    public View.OnClickListener eventGaleria = new View.OnClickListener(){
+      @Override
+        public void onClick(View view){
+          Intent i = new Intent(
+                  Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+
+          startActivityForResult(i, codeGalery);
+
+
+      }
+    };
+
+    public View.OnClickListener eventCamera = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            startActivityForResult(intent, codeCamera);
+        }
+    };
+
+    public View.OnClickListener eventGuardar = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            nombreProp = (EditText)view.findViewById(R.id.editNombreProp);
+            nombre = (EditText)view.findViewById(R.id.editNombreRestaurante);
+            capacidad = (EditText)view.findViewById(R.id.editCapacidad);
+
+            //validar Datos
+            String nr = nombre.getText().toString();
+            String np = nombreProp.getText().toString();
+            String capText = capacidad.getText().toString();
+
+            int cap = 0;
+            try {
+                cap = Integer.parseInt(capText);
+            }
+            catch( NumberFormatException e){
+                Toast.makeText(getContext(), "Error en la capacidad", Toast.LENGTH_LONG).show();
+                return;
+            }
+            if(nr.equals("")) {
+                Toast.makeText(getContext(), "Error el nombre del restaurante", Toast.LENGTH_LONG).show();
+                return;
+            }
+            if(np.equals("")){
+                Toast.makeText(getContext(), "Error en el propietario", Toast.LENGTH_LONG).show();
+                return;
+            }
+
+            restInfo.capacidad = capText;
+            restInfo.nombre = nr;
+            restInfo.propietario = np;
+
+            if(imageFile!=null){
+                restInfo.bandPath = 1; //cambio el path del logo
+            }
+
+            nombreProp.setEnabled(false);
+            nombre.setEnabled(false);
+            capacidad.setEnabled(false);
+            btnEditarRestaurante.setImageResource(R.drawable.ic_action_lock_closed);
+
+
+            HashMap<String, List<String>> map = restInfo.getHashMap();
+
+            Log.d("Mensaje", "****Voy a mandar los datos");
+            if(restInfo.bandPath == 1){
+                Log.d("Mensaje", "****Voy a mandar los datos con foto");
+                subirDatosConFoto(map);
+            }
+            else{
+                subirDatosSinFoto(map);
+                Log.d("Mensaje", "****Voy a mandar los datos SIN foto");
+            }
+
+
+
+        }
+    };
+
+    //sube los datos sin foto
+    public void subirDatosSinFoto(HashMap<String, List<String>> map){
+        //map tiene los campos del reporte y path la ruta de la foto en el sistema de archivos de android
+
+        Log.d("ensaje", "*****estoy en subir restaurante sin foto");
+
+
+        Constants cons = new Constants();
+        String ip = cons.ip;
+        String url = ip + new String("editarRestaurante");
+
+        Future uploading = Ion.with(getContext())
+                .load(url)
+                .progressHandler(new ProgressCallback() {
+                    @Override
+                    public void onProgress(long downloaded, long total) {
+                        // callbacks on progress can happen on the UI thread
+                        // via progressHandler. This is useful if you need to update a TextView.
+                        // Updates to TextViews MUST happen on the UI thread.
+                    }
+                })
+                .setMultipartParameters(map)
+                .asString()
+                .withResponse()
+                .setCallback(new FutureCallback<com.koushikdutta.ion.Response<String>>() {
+                    @Override
+                    public void onCompleted(Exception e, com.koushikdutta.ion.Response<String> result) {
+                        try {
+                            JSONObject jobj = new JSONObject(result.getResult());
+                            Toast.makeText(getContext(), "Reporte enviado con exito", Toast.LENGTH_SHORT).show();
+
+                        } catch (JSONException e1) {
+                            e1.printStackTrace();
+                        }
+                    }
+                });
+    }
+
+    //sube los datos cn foto
+    public void subirDatosConFoto(HashMap<String, List<String>> map){
+        //map tiene los campos del reporte y path la ruta de la foto en el sistema de archivos de android
+
+        Log.d("ensaje", "*****estoy en subir restaurante con foto");
+
+
+        Constants cons = new Constants();
+        String ip = cons.ip;
+        String url = ip + new String("editarRestaurante");
+
+        Log.d("ip", url);
+
+        Future uploading = Ion.with(getContext())
+                .load(url)
+                .progressHandler(new ProgressCallback() {
+                    @Override
+                    public void onProgress(long downloaded, long total) {
+                        // callbacks on progress can happen on the UI thread
+                        // via progressHandler. This is useful if you need to update a TextView.
+                        // Updates to TextViews MUST happen on the UI thread.
+                    }
+                })
+                .setMultipartFile("image", imageFile)
+                .asString()
+                .withResponse()
+                .setCallback(new FutureCallback<com.koushikdutta.ion.Response<String>>() {
+                    @Override
+                    public void onCompleted(Exception e, com.koushikdutta.ion.Response<String> result) {
+                        /*try {
+                            JSONObject jobj = new JSONObject(result.getResult());
+                            Toast.makeText(getContext(), "Reporte enviado con exito", Toast.LENGTH_SHORT).show();
+
+                        } catch (JSONException e1) {
+                            e1.printStackTrace();
+                        }*/
+                    }
+                });
+    }
+
+
+
 
 
 }

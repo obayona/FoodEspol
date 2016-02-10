@@ -181,7 +181,7 @@
                     <ImageButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/btnCamara"
+                        android:id="@+id/btnRestCamara"
                         android:src="@drawable/ic_action_camera"
                         android:background="#FFFFFF"
                         android:layout_gravity="center"/>
@@ -205,7 +205,7 @@
                     <ImageButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/btnGaleria"
+                        android:id="@+id/btnRestGaleria"
                         android:src="@drawable/ic_action_picture"
                         android:gravity="center"
                         android:background="#FFFFFF"
@@ -232,7 +232,7 @@
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/btnGurarInformacion"
+            android:id="@+id/btnRestGuardar"
             android:src="@drawable/ic_action_save"
             android:layout_gravity="center_horizontal"
             android:background="#FFFFFF"/>

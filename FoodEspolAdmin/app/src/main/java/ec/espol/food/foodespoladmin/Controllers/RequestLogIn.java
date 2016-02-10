@@ -69,30 +69,5 @@ public class RequestLogIn {
 
     }
 
-/*
-    public void getPlatos(final int idRestaurante){
-        JsonObjectRequest request;
 
-        String urlPlatos = String.format("http://127.0.0.1:9009/getPlatos?idRestaurante=%d",idRestaurante);
-
-        request = new JsonObjectRequest(Request.Method.GET, urlPlatos,
-                new Response.Listener<JSONObject>(){
-                    @Override
-                    public void onResponse(JSONObject response){
-
-                    }
-
-                }, new Response.ErrorListener(){
-            @Override
-            public void onErrorResponse(VolleyError error){
-
-            }
-        });
-
-        RequestQueue queue = Volley.newRequestQueue(context);
-        queue.add(request);
-
-
-
-    }*/
 }
