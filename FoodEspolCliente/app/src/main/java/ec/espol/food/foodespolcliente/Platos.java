@@ -60,6 +60,7 @@ public class Platos extends Fragment implements Observer, Serializable {
         elementsPlatos.setAdapter(adapterPlatos);
 
 
+
         this.platos.clear();
         for (int i = 0; i < platosRecibidos.length(); i++) {
             try {
@@ -68,7 +69,13 @@ public class Platos extends Fragment implements Observer, Serializable {
                 nombre = row.getString("nombre");
                 precio=row.getDouble("precio");
                 photoPath=row.getString("foto");
+
                 plato=new Plato(id,nombre,precio,photoPath);
+                plato.catComidaRapida = row.getInt("catComidaRapida");
+                plato.catPiqueo = row.getInt("catPiqueo");
+                plato.catDesayuno = row.getInt("catDesayuno");
+                plato.catAlmuerzo = row.getInt("catAlmuerzo");
+
                 this.platos.add(plato);
             }catch (JSONException e){
 

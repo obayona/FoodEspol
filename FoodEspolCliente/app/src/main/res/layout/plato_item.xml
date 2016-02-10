@@ -44,7 +44,7 @@ android:elevation="5dp">
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/btnInformacion"
+        android:id="@+id/btnInfoPlato"
         android:src="@drawable/ic_action_info"
         android:background="#FFFFFF"/>
 

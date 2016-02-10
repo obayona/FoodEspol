@@ -18,13 +18,15 @@ public class Plato {
     public int catPiqueo = 0;
     public int catDesayuno = 0;
     public int catAlmuerzo = 0;
-
+    private String path;
 
 
     public Plato(int id, String nombre, double precio, String photoPath) {
         this.id = id;
         this.nombre = nombre;
         this.precio = precio;
+        this.path = photoPath;
+
 
     }
 
@@ -65,7 +67,7 @@ public class Plato {
     }
 
     public String getPhotoPath() {
-        return photoPath;
+        return path;
     }
 
 
@@ -97,7 +99,7 @@ public class Plato {
 
 
     public void setPhotoPath(String photoPath) {
-        this.photoPath = photoPath;
+        this.path = photoPath;
     }
 
 

@@ -54,7 +54,7 @@ var platos = {
 		idRestaurante:1,
 		nombre: "arroz con pollo",
 		precio: 1.50,
-		foto: "imagenes/arrozpollo.png",
+		foto: "imagenes/arroz_con_pollo.jpg",
 		catPiqueo:0,
 		catComidaRapida:1,
 		catDesayuno:0,
@@ -65,7 +65,7 @@ var platos = {
 		idRestaurante:1,
 		nombre: "arroz con carne",
 		precio: 1.50,
-		foto: "imagenes/arrozpollo.png",
+		foto: "imagenes/arroz_con_carne.jpg",
 		catPiqueo:1,
 		catComidaRapida:1,
 		catDesayuno:0,
@@ -75,7 +75,7 @@ var platos = {
 		idRestaurante:2,
 		nombre: "arroz con pescado",
 		precio: 1.50,
-		foto: "imagenes/arrozpollo.png",
+		foto: "imagenes/arroz_con_pescado.jpg",
 		catPiqueo:1,
 		catComidaRapida:0,
 		catDesayuno:0,
@@ -85,7 +85,7 @@ var platos = {
 		idRestaurante:2,
 		nombre: "arroz con arroz",
 		precio: 1.50,
-		foto: "imagenes/arrozpollo.png",
+		foto: "imagenes/arroz_con_arroz.jpg",
 		catPiqueo:0,
 		catComidaRapida:1,
 		catDesayuno:0,
@@ -268,7 +268,15 @@ exports.getAllPlatos = function(request, response){
 	for (it in platos){
 		var plato = platos[it];
 
-		result.push({id:it, idRestautante: plato.idRestautante,nombre:plato.nombre,precio:plato.precio,foto:plato.foto});
+		result.push({id:it, idRestautante: plato.idRestautante,
+			nombre:plato.nombre,
+			precio:plato.precio,
+			foto:plato.foto,
+			catComidaRapida:plato.catComidaRapida,
+			catPiqueo:plato.catPiqueo,
+			catDesayuno:plato.catDesayuno,
+			catAlmuerzo:plato.catAlmuerzo,
+		});
 
 	}
 

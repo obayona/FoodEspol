@@ -67,7 +67,7 @@ public class PlatosAdapter extends ArrayAdapter<Plato> {
         final Plato currentPlato = this.platos.get(position);
         holder.nombre.setText(currentPlato.getNombre());
         holder.precio.setText(Double.toString(currentPlato.getPrecio()));
-        ImageButton informacion =(ImageButton)convertView.findViewById(R.id.btnInformacion);
+        ImageButton informacion =(ImageButton)convertView.findViewById(R.id.btnInfoPlato);
         informacion.setFocusable(false);
         informacion.setClickable(false);
         observer=this.observer;
@@ -83,7 +83,13 @@ public class PlatosAdapter extends ArrayAdapter<Plato> {
                 intent.putExtra("id",currentPlato.getId());
                 intent.putExtra("nombre",currentPlato.getNombre());
                 intent.putExtra("foto",currentPlato.getPhotoPath());
-                intent.putExtra("precio",currentPlato.getPrecio());
+                intent.putExtra("precio", currentPlato.getPrecio());
+                intent.putExtra("path", currentPlato.getPhotoPath());
+                intent.putExtra("catComidaRapida",currentPlato.catComidaRapida);
+                intent.putExtra("catPiqueo",currentPlato.catPiqueo);
+                intent.putExtra("catDesayuno",currentPlato.catDesayuno);
+                intent.putExtra("catAlmuerzo",currentPlato.catAlmuerzo);
+
                 context.startActivity(intent);
 
             }
