@@ -74,7 +74,9 @@ exports.postMenu = function(request, response){
 
 }
 
-
+exports.getAllPlatos = function(request, response){
+	db.getAllPlatos(request, response);
+}
 
 
 exports.editarRestaurante = function(request, response){
