@@ -17,6 +17,7 @@ router.get('/getRestaurante', Controller.getRestaurante);
 router.post('/postMenu', Controller.postMenu);
 router.post('/editarRestaurante', Controller.editarRestaurante);
 router.get('/getRestaurantes', Controller.getRestaurantes);
+router.get('/getPlato', Controller.getPlato);
 
 
 module.exports = router;

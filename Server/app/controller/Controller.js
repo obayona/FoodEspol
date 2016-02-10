@@ -21,6 +21,11 @@ exports.guardarPlato= function(request, response){
 
 }
 
+exports.getPlato = function(request, response){
+
+	db.getPlato(request, response);
+}
+
 exports.getMenus = function(request, response){
 	idRestautante = request.query.idRestautante;
 	db.getMenus(request,response);
