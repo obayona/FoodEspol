@@ -18,14 +18,16 @@ public class Plato {
     public int catPiqueo = 0;
     public int catDesayuno = 0;
     public int catAlmuerzo = 0;
+    public int idRestaurante = 0;
     private String path;
 
 
-    public Plato(int id, String nombre, double precio, String photoPath) {
+    public Plato(int id, String nombre, double precio, String photoPath, int idRestaurante) {
         this.id = id;
         this.nombre = nombre;
         this.precio = precio;
         this.path = photoPath;
+        this.idRestaurante = idRestaurante;
 
 
     }

@@ -89,6 +89,7 @@ public class PlatosAdapter extends ArrayAdapter<Plato> {
                 intent.putExtra("catPiqueo",currentPlato.catPiqueo);
                 intent.putExtra("catDesayuno",currentPlato.catDesayuno);
                 intent.putExtra("catAlmuerzo",currentPlato.catAlmuerzo);
+                intent.putExtra("idRestaurante", currentPlato.idRestaurante);
 
                 context.startActivity(intent);
 
